@@ -1,0 +1,705 @@
+{
+    "slug": "startup",
+    "name": "Startup",
+    "perks": [
+        "7day free trial",
+        "Daily Backup",
+        "Unlimited User",
+        "Seamless Mobile Access",
+        "Zero-Cost Training"
+    ],
+    "note": "Here, you have various modules available. You can uncheck the modules you do not want to use.",
+    "included": [],
+    "sections": [
+        {
+            "key": "merchandise",
+            "title": "Merchandise Startup",
+            "groups": [
+                {
+                    "key": "productMerchand",
+                    "name": "Product",
+                    "modules": [
+                        {
+                            "name": "Products/ Inventory/ Stock Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Tracks and controls stock levels, categories, product variants, location in the warehouse, and shipping."
+                        },
+                        {
+                            "name": "Fixed Asset Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Effortlessly track, control, and report on your organization’s fixed assets. Enables you to monitor asset inventory, categories, variants, locations, and shipping logistics, while also providing reporting capabilities for asset appreciation and depreciation. Simplify the management of valuable resources and gain insights into the financial performance of your assets."
+                        },
+                        {
+                            "name": "Stock Alert Report",
+                            "price": 0,
+                            "default": true,
+                            "description": "Lists stock item’s quantity available in a particular warehouse."
+                        },
+                        {
+                            "name": "Stock Report",
+                            "price": 215,
+                            "default": true,
+                            "description": "List stock item's quantity available in a particular warehouse. multiple Stock reports, including Sales, Quotations, Purchases, Sale and Purchase Returns, Transfers, as well as Adjustments."
+                        }
+                    ]
+                },
+                {
+                    "key": "salesMerchand",
+                    "name": "Sales",
+                    "modules": [
+                        {
+                            "name": "Sales Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Implements sales placement, sales scheduling, shipping, status and invoicing."
+                        },
+                        {
+                            "name": "Sales Report",
+                            "price": 0,
+                            "default": true,
+                            "description": "Reports sales of all products and analyzes sales data."
+                        },
+                        {
+                            "name": "Top Selling Products Report",
+                            "price": 199,
+                            "default": true,
+                            "description": "Reports which product sold in what amount, how many times, at what rate for how much amount and when (specified date)."
+                        },
+                        {
+                            "name": "Shipment and Delivery Status",
+                            "price": 199,
+                            "default": true,
+                            "description": "Tracks the progress of shipments, delivery times, and order status updates, ensuring accurate timelines and customer notifications."
+                        },
+                        {
+                            "name": "Sales Return Tracking",
+                            "price": 0,
+                            "default": true,
+                            "description": "When sold Item being returned. Manages and identifies product, customer, warehouse, date, it’s effect on stock as well as revenue and its status."
+                        },
+                        {
+                            "name": "Point of Sale (POS)",
+                            "price": 710,
+                            "default": true,
+                            "description": "Easiest way of selling and navigating through products. Displays products with image, quantity as well as price & enables selling with barcode support."
+                        },
+                        {
+                            "name": "Product Sales Report",
+                            "price": 225,
+                            "default": true,
+                            "description": "Track total product sales by warehouse, customer, and date. Filterable and exportable in PDF and Excel. Gain insights into sales quantity and grand total. Inform your business decisions with this powerful reporting module."
+                        }
+                    ]
+                },
+                {
+                    "key": "purchaseMerchand",
+                    "name": "Purchase",
+                    "modules": [
+                        {
+                            "name": "Purchases Return Tracking",
+                            "price": 0,
+                            "default": true,
+                            "description": "When purchased Item being returned. Manages and identifies product, supplier, warehouse, date, effect on stock and its status."
+                        },
+                        {
+                            "name": "Product Purchases Report",
+                            "price": 225,
+                            "default": true,
+                            "description": "Track total product purchases by warehouse, supplier, and date. Filterable and exportable in PDF and Excel. Gain insights into purchase quantity and grand total. Optimize costs and make informed decisions with this powerful reporting module."
+                        },
+                        {
+                            "name": "Purchase Report",
+                            "price": 0,
+                            "default": true,
+                            "description": "Reports purchases made for various products focusing mainly on quantity, total cost, product supply , chain status, and payment status incurred to buy that quantity for a preferred date range."
+                        }
+                    ]
+                },
+                {
+                    "key": "accountingMerchand",
+                    "name": "Accounting",
+                    "modules": [
+                        {
+                            "name": "Payment Method Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Facilitates the management of various payment methods, allowing organizations to streamline transactions, track payment processing, and ensure secure financial operations across multiple channels."
+                        },
+                        {
+                            "name": "Trial Balance Report",
+                            "price": 182,
+                            "default": true,
+                            "description": "Displays a summary of all ledger accounts with their respective balances, ensuring that total debits equal total credits for accurate financial reporting."
+                        },
+                        {
+                            "name": "General Ledger Report",
+                            "price": 185,
+                            "default": true,
+                            "description": "Presents a comprehensive record of all transactions in a standardized format, enabling easy tracking and review of financial activities within the general ledger."
+                        },
+                        {
+                            "name": "Monetary Transaction Tracking",
+                            "price": 140,
+                            "default": true,
+                            "description": "Manages the movement of funds through loans, revenues from auxiliary services, and other activities beyond core operations, providing detailed oversight for financial health and reporting."
+                        },
+                        {
+                            "name": "General Ledger and Trial Balance",
+                            "price": 130,
+                            "default": true,
+                            "description": "Maintains a comprehensive record of all financial transactions, facilitating the creation of a Trial Balance to ensure the accuracy and completeness of accounts, supporting effective financial reporting and analysis."
+                        },
+                        {
+                            "name": "Payment Report",
+                            "price": 205,
+                            "default": true,
+                            "description": "Reports payments on purchase, sales, sales return and purchase return. Also reports how much, how, when, and who paid."
+                        },
+                        {
+                            "name": "Bank Account Management",
+                            "price": 130,
+                            "default": true,
+                            "description": "Enables the creation and management of bank accounts while recording transaction movements, ensuring accurate financial tracking and reconciliation for better cash flow management."
+                        },
+                        {
+                            "name": "Cash on Hand Management",
+                            "price": 133,
+                            "default": true,
+                            "description": "Oversees cash revenues and petty cash transactions, ensuring accurate tracking, secure handling, and efficient reconciliation for effective cash flow management."
+                        },
+                        {
+                            "name": "All Tax Management",
+                            "price": 199,
+                            "default": true,
+                            "description": "Tracks all tax obligations related to the organization and employees, including VAT, withholding, income tax, and others to ensuring reconciliation and monitoring of payment statuses for compliance and accuracy."
+                        },
+                        {
+                            "name": "Financial Statement",
+                            "price": 267,
+                            "default": true,
+                            "description": "Prepares key financial documents, including Profit and Loss statements, Owner's Equity statements, Balance Sheets, and Cash Flow statements, ensuring compliance with government regulations and standards for accurate financial reporting."
+                        }
+                    ]
+                },
+                {
+                    "key": "peopleMerchand",
+                    "name": "People",
+                    "modules": [
+                        {
+                            "name": "Supplier Report",
+                            "price": 193,
+                            "default": true,
+                            "description": "Reports your purchases from suppliers', payments, amounts owed and paid (Credit report), as well as returned purchases."
+                        }
+                    ]
+                }
+            ],
+            "addons": [
+                {
+                    "name": "Profit & Loss Report",
+                    "price": 180,
+                    "default": true,
+                    "description": "A financial report that shows a company’s Sales, Purchases, Sales Return, Purchases Return, Expenses, revenues and Profit, Payments Received, Payments Sent, and Payments Net over a given time period."
+                },
+                {
+                    "name": "Daily Backup",
+                    "price": 0,
+                    "default": true,
+                    "description": "Sending a copy of your virtual file or database to a secondary, off-site location for preservation in case of equipment failure or catastrophe."
+                },
+                {
+                    "name": "Expenses Management",
+                    "price": 250,
+                    "default": true,
+                    "description": "Assists you in keeping track of business spending. It facilitates in budget management and expense optimization for your business."
+                },
+                {
+                    "name": "Adjustment and Modification",
+                    "price": 0,
+                    "default": true,
+                    "description": "This report details adjustments made to inventory, including additions or subtractions of goods from stock, to ensure accurate inventory management and tracking."
+                },
+                {
+                    "name": "Quotation and Proforma",
+                    "price": 199,
+                    "default": true,
+                    "description": "Generates estimated cost of products with quantity, picture, and description. Enables automatic conversion to sale."
+                }
+            ]
+        },
+        {
+            "key": "service",
+            "title": "Service Startup",
+            "groups": [
+                {
+                    "key": "salesService",
+                    "name": "Sales",
+                    "modules": [
+                        {
+                            "name": "Sales Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Implements sales placement, sales scheduling, shipping, status and invoicing."
+                        },
+                        {
+                            "name": "Sales Report",
+                            "price": 0,
+                            "default": true,
+                            "description": "Reports sales of all products and analyzes sales data."
+                        },
+                        {
+                            "name": "Shipment and Delivery Status",
+                            "price": 129,
+                            "default": true,
+                            "description": "Tracks the progress of shipments, delivery times, and order status updates, ensuring accurate timelines and customer notifications."
+                        },
+                        {
+                            "name": "Point of Sale (POS)",
+                            "price": 600,
+                            "default": true,
+                            "description": "Easiest way of selling and navigating through products. Displays products with image, quantity as well as price & enables selling with barcode support."
+                        }
+                    ]
+                },
+                {
+                    "key": "purchaseService",
+                    "name": "Purchase",
+                    "modules": [
+                        {
+                            "name": "Purchase Report",
+                            "price": 0,
+                            "default": true,
+                            "description": "Reports purchases made for various products focusing mainly on quantity, total cost, product supply , chain status, and payment status incurred to buy that quantity for a preferred date range."
+                        },
+                        {
+                            "name": "Purchases & Supply Chain",
+                            "price": 200,
+                            "default": true,
+                            "description": "Maximize cost saving with support for the end-to-end procurement and logistics processes."
+                        }
+                    ]
+                },
+                {
+                    "key": "productService",
+                    "name": "Product",
+                    "modules": [
+                        {
+                            "name": "Products/ Inventory/ Stock Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Tracks and controls stock levels, categories, product variants, location in the warehouse, and shipping."
+                        },
+                        {
+                            "name": "Fixed Asset Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Effortlessly track, control, and report on your organization’s fixed assets. Enables you to monitor asset inventory, categories, variants, locations, and shipping logistics, while also providing reporting capabilities for asset appreciation and depreciation. Simplify the management of valuable resources and gain insights into the financial performance of your assets."
+                        },
+                        {
+                            "name": "Stock Alert Report",
+                            "price": 0,
+                            "default": true,
+                            "description": "Lists stock item’s quantity available in a particular warehouse."
+                        },
+                        {
+                            "name": "Raw Material Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Efficiently track raw material usage, minimize wastage, and trace their transformation into finished products with our Raw Material Management module, offered at no cost. Enhance manufacturing processes, optimize resource utilization, and gain valuable insights for improved cost-effectiveness within your ERP system"
+                        }
+                    ]
+                },
+                {
+                    "key": "peopleService",
+                    "name": "People",
+                    "modules": [
+                        {
+                            "name": "Customer Relationship Management(CRM)",
+                            "price": 250,
+                            "default": true,
+                            "description": "Capture and maintain customer as well as supplier data and relationships facilitate the use of customer and supplier experience and evaluate the knowledge management. Also capture and maintain employee data and relationships as users of the system facilitate the use of employee experiences."
+                        },
+                        {
+                            "name": "Supplier Report",
+                            "price": 135,
+                            "default": true,
+                            "description": "Reports your purchases from suppliers', payments, amounts owed and paid (Credit report), as well as returned purchases."
+                        },
+                        {
+                            "name": "Best Customer Report / Customer Report",
+                            "price": 135,
+                            "default": true,
+                            "description": "Reports purchases made for various products focusing mainly on quantity, total cost, product supply , chain status, and payment status incurred to buy that quantity for a preferred date range."
+                        }
+                    ]
+                },
+                {
+                    "key": "accountingService",
+                    "name": "Accounting",
+                    "modules": [
+                        {
+                            "name": "Payment Method Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Facilitates the management of various payment methods, allowing organizations to streamline transactions, track payment processing, and ensure secure financial operations across multiple channels."
+                        },
+                        {
+                            "name": "Trial Balance Report",
+                            "price": 146,
+                            "default": true,
+                            "description": "Displays a summary of all ledger accounts with their respective balances, ensuring that total debits equal total credits for accurate financial reporting."
+                        },
+                        {
+                            "name": "General Ledger Report",
+                            "price": 149,
+                            "default": true,
+                            "description": "Presents a comprehensive record of all transactions in a standardized format, enabling easy tracking and review of financial activities within the general ledger."
+                        },
+                        {
+                            "name": "Monetary Transaction Tracking",
+                            "price": 199,
+                            "default": true,
+                            "description": "Manages the movement of funds through loans, revenues from auxiliary services, and other activities beyond core operations, providing detailed oversight for financial health and reporting."
+                        },
+                        {
+                            "name": "General Ledger and Trial Balance",
+                            "price": 114,
+                            "default": true,
+                            "description": "Maintains a comprehensive record of all financial transactions, facilitating the creation of a Trial Balance to ensure the accuracy and completeness of accounts, supporting effective financial reporting and analysis."
+                        },
+                        {
+                            "name": "Payment Report",
+                            "price": 163,
+                            "default": true,
+                            "description": "Reports payments on purchase, sales, sales return and purchase return. Also reports how much, how, when, and who paid."
+                        },
+                        {
+                            "name": "Bank Account Management",
+                            "price": 163,
+                            "default": true,
+                            "description": "Enables the creation and management of bank accounts while recording transaction movements, ensuring accurate financial tracking and reconciliation for better cash flow management."
+                        },
+                        {
+                            "name": "Cash on Hand Management",
+                            "price": 171,
+                            "default": true,
+                            "description": "Oversees cash revenues and petty cash transactions, ensuring accurate tracking, secure handling, and efficient reconciliation for effective cash flow management."
+                        },
+                        {
+                            "name": "All Tax Management",
+                            "price": 183,
+                            "default": true,
+                            "description": "Tracks all tax obligations related to the organization and employees, including VAT, withholding, income tax, and others to ensuring reconciliation and monitoring of payment statuses for compliance and accuracy."
+                        },
+                        {
+                            "name": "Financial Statement",
+                            "price": 241,
+                            "default": true,
+                            "description": "Prepares key financial documents, including Profit and Loss statements, Owner's Equity statements, Balance Sheets, and Cash Flow statements, ensuring compliance with government regulations and standards for accurate financial reporting."
+                        }
+                    ]
+                },
+                {
+                    "key": "productionService",
+                    "name": "Production",
+                    "modules": [
+                        {
+                            "name": "Production Report",
+                            "price": 149,
+                            "default": true,
+                            "description": "Provides a comprehensive overview of the production process, detailing raw material usage, production output, labor costs, and efficiency metrics to assess manufacturing performance and identify areas for improvement."
+                        },
+                        {
+                            "name": "Production Order Management",
+                            "price": 500,
+                            "default": true,
+                            "description": "This module streamlines manufacturing orders by setting start and finish dates, selecting warehouses, and specifying products. It tracks order items, manages costs (overhead, labor, shipping), and monitors stock levels. Users can define manufacturing steps and responsible staff for efficient production workflows."
+                        },
+                        {
+                            "name": "Process Setting Management",
+                            "price": 400,
+                            "default": true,
+                            "description": "This module manages and organizes process lists, defining manufacturing steps along with their respective time requirements for efficient workflow planning and execution."
+                        }
+                    ]
+                }
+            ],
+            "addons": [
+                {
+                    "name": "Daily Backup",
+                    "price": 0,
+                    "default": true,
+                    "description": "Sending a copy of your virtual file or database to a secondary, off-site location for preservation in case of equipment failure or catastrophe."
+                },
+                {
+                    "name": "Expenses Management",
+                    "price": 139,
+                    "default": true,
+                    "description": "Assists you in keeping track of business spending. It facilitates in budget management and expense optimization for your business."
+                }
+            ]
+        },
+        {
+            "key": "manufacturing",
+            "title": "Manufacturing Startup",
+            "groups": [
+                {
+                    "key": "productManufact",
+                    "name": "Product",
+                    "modules": [
+                        {
+                            "name": "Products/ Inventory/ Stock Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Tracks and controls stock levels, categories, product variants, location in the warehouse, and shipping."
+                        },
+                        {
+                            "name": "Fixed Asset Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Effortlessly track, control, and report on your organization’s fixed assets. Enables you to monitor asset inventory, categories, variants, locations, and shipping logistics, while also providing reporting capabilities for asset appreciation and depreciation. Simplify the management of valuable resources and gain insights into the financial performance of your assets."
+                        },
+                        {
+                            "name": "Stock Report",
+                            "price": 155,
+                            "default": true,
+                            "description": "List stock item's quantity available in a particular warehouse. multiple Stock reports, including Sales, Quotations, Purchases, Sale and Purchase Returns, Transfers, as well as Adjustments."
+                        },
+                        {
+                            "name": "Stock Alert Report",
+                            "price": 0,
+                            "default": true,
+                            "description": "Lists stock item’s quantity available in a particular warehouse."
+                        },
+                        {
+                            "name": "Raw Material Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Efficiently track raw material usage, minimize wastage, and trace their transformation into finished products with our Raw Material Management module, offered at no cost. Enhance manufacturing processes, optimize resource utilization, and gain valuable insights for improved cost-effectiveness within your ERP system"
+                        }
+                    ]
+                },
+                {
+                    "key": "salesManufact",
+                    "name": "Sales",
+                    "modules": [
+                        {
+                            "name": "Sales Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Implements sales placement, sales scheduling, shipping, status and invoicing."
+                        },
+                        {
+                            "name": "Sales Report",
+                            "price": 0,
+                            "default": true,
+                            "description": "Reports sales of all products and analyzes sales data."
+                        },
+                        {
+                            "name": "Shipment and Delivery Status",
+                            "price": 109,
+                            "default": true,
+                            "description": "Tracks the progress of shipments, delivery times, and order status updates, ensuring accurate timelines and customer notifications."
+                        },
+                        {
+                            "name": "Sales Return Tracking",
+                            "price": 0,
+                            "default": true,
+                            "description": "When sold Item being returned. Manages and identifies product, customer, warehouse, date, it’s effect on stock as well as revenue and its status."
+                        },
+                        {
+                            "name": "Point of Sale (POS)",
+                            "price": 465,
+                            "default": true,
+                            "description": "Easiest way of selling and navigating through products. Displays products with image, quantity as well as price & enables selling with barcode support."
+                        },
+                        {
+                            "name": "Product Sales Report",
+                            "price": 116,
+                            "default": true,
+                            "description": "Track total product sales by warehouse, customer, and date. Filterable and exportable in PDF and Excel. Gain insights into sales quantity and grand total. Inform your business decisions with this powerful reporting module."
+                        }
+                    ]
+                },
+                {
+                    "key": "purchaseManufact",
+                    "name": "Purchase",
+                    "modules": [
+                        {
+                            "name": "Purchases Return Tracking",
+                            "price": 0,
+                            "default": true,
+                            "description": "When purchased Item being returned. Manages and identifies product, supplier, warehouse, date, effect on stock and its status."
+                        },
+                        {
+                            "name": "Purchases Quotation",
+                            "price": 0,
+                            "default": true,
+                            "description": "Enables creating and managing supplier quotations, listing items with costs, quantities, and delivery terms for procurement comparison. Helps streamline supplier selection and cost estimation for purchasing decisions."
+                        },
+                        {
+                            "name": "Product Purchases Report",
+                            "price": 116,
+                            "default": true,
+                            "description": "Track total product purchases by warehouse, supplier, and date. Filterable and exportable in PDF and Excel. Gain insights into purchase quantity and grand total. Optimize costs and make informed decisions with this powerful reporting module."
+                        },
+                        {
+                            "name": "Purchase Report",
+                            "price": 0,
+                            "default": true,
+                            "description": "Reports purchases made for various products focusing mainly on quantity, total cost, product supply , chain status, and payment status incurred to buy that quantity for a preferred date range."
+                        },
+                        {
+                            "name": "Purchases & Supply Chain",
+                            "price": 300,
+                            "default": true,
+                            "description": "Maximize cost saving with support for the end-to-end procurement and logistics processes."
+                        }
+                    ]
+                },
+                {
+                    "key": "accountingManufact",
+                    "name": "Accounting",
+                    "modules": [
+                        {
+                            "name": "Payment Method Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Facilitates the management of various payment methods, allowing organizations to streamline transactions, track payment processing, and ensure secure financial operations across multiple channels."
+                        },
+                        {
+                            "name": "Payment Report",
+                            "price": 120,
+                            "default": true,
+                            "description": "Reports payments on purchase, sales, sales return and purchase return. Also reports how much, how, when, and who paid."
+                        },
+                        {
+                            "name": "Trial Balance Report",
+                            "price": 125,
+                            "default": true,
+                            "description": "Displays a summary of all ledger accounts with their respective balances, ensuring that total debits equal total credits for accurate financial reporting."
+                        },
+                        {
+                            "name": "General Ledger Report",
+                            "price": 125,
+                            "default": true,
+                            "description": "Presents a comprehensive record of all transactions in a standardized format, enabling easy tracking and review of financial activities within the general ledger."
+                        },
+                        {
+                            "name": "Monetary Transaction Tracking",
+                            "price": 159,
+                            "default": true,
+                            "description": "Manages the movement of funds through loans, revenues from auxiliary services, and other activities beyond core operations, providing detailed oversight for financial health and reporting."
+                        },
+                        {
+                            "name": "General Ledger and Trial Balance",
+                            "price": 0,
+                            "default": true,
+                            "description": "Maintains a comprehensive record of all financial transactions, facilitating the creation of a Trial Balance to ensure the accuracy and completeness of accounts, supporting effective financial reporting and analysis."
+                        },
+                        {
+                            "name": "Bank Account Management",
+                            "price": 0,
+                            "default": true,
+                            "description": "Enables the creation and management of bank accounts while recording transaction movements, ensuring accurate financial tracking and reconciliation for better cash flow management."
+                        },
+                        {
+                            "name": "All Tax Management",
+                            "price": 169,
+                            "default": true,
+                            "description": "Tracks all tax obligations related to the organization and employees, including VAT, withholding, income tax, and others to ensuring reconciliation and monitoring of payment statuses for compliance and accuracy."
+                        },
+                        {
+                            "name": "Financial Statement",
+                            "price": 215,
+                            "default": true,
+                            "description": "Prepares key financial documents, including Profit and Loss statements, Owner's Equity statements, Balance Sheets, and Cash Flow statements, ensuring compliance with government regulations and standards for accurate financial reporting."
+                        }
+                    ]
+                },
+                {
+                    "key": "manufacturingManufact",
+                    "name": "Manufacturing",
+                    "modules": [
+                        {
+                            "name": "Manufacturing Report",
+                            "price": 175,
+                            "default": true,
+                            "description": "Provides a comprehensive overview of the production process, detailing raw material usage, production output, labor costs, and efficiency metrics to assess manufacturing performance and identify areas for improvement."
+                        },
+                        {
+                            "name": "Maintenance Management",
+                            "price": 205,
+                            "default": true,
+                            "description": "Handles defect tracking and issue resolution for equipment, machinery, and factory assets, ensuring timely maintenance and minimizing downtime."
+                        },
+                        {
+                            "name": "Process Setting Management",
+                            "price": 441,
+                            "default": true,
+                            "description": "This module manages and organizes process lists, defining manufacturing steps along with their respective time requirements for efficient workflow planning and execution."
+                        },
+                        {
+                            "name": "Manufacturing Order Management",
+                            "price": 550,
+                            "default": true,
+                            "description": "This module streamlines manufacturing orders by setting start and finish dates, selecting warehouses, and specifying products. It tracks order items, manages costs (overhead, labor, shipping), and monitors stock levels. Users can define manufacturing steps and responsible staff for efficient production workflows."
+                        }
+                    ]
+                },
+                {
+                    "key": "peopleManufact",
+                    "name": "People",
+                    "modules": [
+                        {
+                            "name": "Supplier Report",
+                            "price": 115,
+                            "default": true,
+                            "description": "Reports your purchases from suppliers', payments, amounts owed and paid (Credit report), as well as returned purchases."
+                        },
+                        {
+                            "name": "Best Customer Report / Customer Report",
+                            "price": 115,
+                            "default": true,
+                            "description": "Reports purchases made for various products focusing mainly on quantity, total cost, product supply , chain status, and payment status incurred to buy that quantity for a preferred date range."
+                        }
+                    ]
+                },
+                {
+                    "key": "transferLogisticsManufact",
+                    "name": "Transfer",
+                    "modules": [
+                        {
+                            "name": "Transfer and Logistics Tracking",
+                            "price": 109,
+                            "default": true,
+                            "description": "Manages the movement of products between branches and keeps track of their status."
+                        }
+                    ]
+                }
+            ],
+            "addons": [
+                {
+                    "name": "Daily Backup",
+                    "price": 0,
+                    "default": true,
+                    "description": "Sending a copy of your virtual file or database to a secondary, off-site location for preservation in case of equipment failure or catastrophe."
+                },
+                {
+                    "name": "Expenses Management",
+                    "price": 149,
+                    "default": true,
+                    "description": "Assists you in keeping track of business spending. It facilitates in budget management and expense optimization for your business."
+                },
+                {
+                    "name": "Warehouse Management/report",
+                    "price": 133,
+                    "default": true,
+                    "description": "Sending a copy of your virtual file or database to a secondary, off-site location for preservation in case of equipment failure or catastrophe."
+                }
+            ]
+        }
+    ]
+}

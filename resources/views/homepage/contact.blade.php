@@ -17,6 +17,11 @@
 
     <div class="section zubuz-section-padding2">
         <div class="container">
+            @if (session('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-6">
                     <div class="zubuz-default-content m-right">
@@ -69,26 +74,27 @@
                 <div class="col-lg-6">
                     <div class="zubuz-form-wrap">
                         <h3>Fill the from below</h3>
-                        <form action="#">
+                        <form action="{{ route('DrongoERP.contactMessage')}}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="zubuz-main-form">
-                                        <input type="text" placeholder="Your Name*">
+                                        <input type="text" name="name" placeholder="Your Name*">
                                     </div>
-                                </div>
+                                </div> 
                                 <div class="col-lg-6">
                                     <div class="zubuz-main-form">
-                                        <input type="email" placeholder="Email Address*">
+                                        <input type="email" name="email" placeholder="Email Address*">
                                     </div>
                                 </div>
                             </div>
                             <div class="zubuz-main-form">
-                                <input type="text" placeholder="Subject">
+                                <input type="text" name="subject" placeholder="Subject">
                             </div>
                             <div class="zubuz-main-form">
-                                <textarea name="textarea" placeholder="Write us your comment"></textarea>
+                                <textarea name="comment" placeholder="Write us your comment"></textarea>
                             </div>
-                            <button id="zubuz-submit-btn" type="button"><span>Send Message</span></button>
+                            <button id="zubuz-submit-btn" type="submit"><span>Send Message</span></button>
                         </form>
                     </div>
                 </div>

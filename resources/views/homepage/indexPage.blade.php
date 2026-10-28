@@ -1,7 +1,7 @@
 @extends('layout/mainlayout')
 
 @section('page-content')
-    <div class="zubuz-hero-section">
+    <div class="zubuz-hero-section" id="home">
         <div class="container">
             <div class="zubuz-hero-content center">
                 <h1>
@@ -13,15 +13,16 @@
                 <p>DrongoERP offers a user-friendly, cost-effective and scalable software solution that empowers you to access and utilize powerful technology that drive your business forward.</p>
                 <div class="zubuz-extara-mt">
                     <div class="zubuz-subscribe-three">
-                        <form action="#">
-                            <input type="email" placeholder="Enter your e-mail address">
-                            <button class="zubuz-default-btn zubuz-subscription-btn three" id="zubuz-subscription-btn" type="submit">
-                                <span>Get started</span>
+                        <form action="{{ route('DrongoERP.liveDemoViewerSubmit')}}" method="POST">
+                            @csrf
+                            <input type="email" name="email" placeholder="Enter your e-mail address" required>
+                            <button type="submit" target="_blank" class="zubuz-default-btn zubuz-subscription-btn three" id="zubuz-subscription-btn">
+                                <span>Live Demo</span>
                             </button>
                             <div class="zubuz-input-email">
                                 <img src="{{ asset('/images/icon/email2.svg') }}" alt="">
                             </div>
-                        </form>
+                        </form>  
                     </div>
                     <div class="zubuz-icon-list">
                         <ul>
@@ -51,7 +52,7 @@
     </div>
     <!-- End section -->
 
-    <div class="section zubuz-section-padding3">
+    <div class="section zubuz-section-padding3" id="services">
         <div class="container">
             <div class="zubuz-section-title zubuz-two-column-title">
                 <div class="row">
@@ -60,7 +61,7 @@
                     </div>
                     <div class="col-lg-5 d-flex align-items-center">
                         <div class="zubuz-title-btn">
-                            <a class="zubuz-default-btn pill" href="#">
+                            <a class="zubuz-default-btn pill" href="#apps">
                                 <span>View all services</span>
                             </a>
                         </div>
@@ -144,6 +145,112 @@
         </div>
     </div>
     <!-- End Section -->
+
+    <div class="section zubuz-section-padding3 bg-light" id="about">
+        <div class="container">
+            <div class="zubuz-section-title zubuz-two-column-title">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <h2>Our company's journey story</h2>
+                    </div>
+                    <div class="col-lg-5 d-flex align-items-center">
+                        <p>Born in 2010 out of a passion for innovation and a commitment to redefining industry standards. Our story is one of resilience and creativity.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="zubuz-about-thumb">
+                        <img src="{{ asset('/images/about/about-team.jpg') }}" alt="A team collaborating at their workstations" loading="lazy">
+                    </div>
+                    <div class="zubuz-about-thumb">
+                        <img src="{{ asset('/images/about/about-product.jpg') }}" alt="DrongoERP dashboard on desktop, laptop, tablet and phone" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="zubuz-about-thumb">
+                        <img src="{{ asset('/images/about/about-presentation.jpg') }}" alt="A team presentation in a modern office" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="zubuz-about-thumb">
+                        <img src="{{ asset('/images/about/about-planning.jpg') }}" alt="A business planning session" loading="lazy">
+                    </div>
+                    <div class="zubuz-about-thumb">
+                        <img src="{{ asset('/images/about/about-clients.jpg') }}" alt="Celebrating a business success" loading="lazy">
+                    </div>
+                </div>
+            </div>
+            <div class="row zubuz-extara-mt">
+                <div class="col-lg-6">
+                    <div class="zubuz-iconbox-wrap-left mw-100">
+                        <div class="zubuz-iconbox-icon none-bg">
+                            <img src="{{ asset('/images/about/icon1.png') }}" alt="">
+                        </div>
+                        <div class="zubuz-iconbox-data data-small">
+                            <span>Innovation & Collaboration:</span>
+                            <p>We embrace creativity and continuous improvement, fostering a culture of innovation. We believe in the power of teamwork.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="zubuz-iconbox-wrap-left mw-100">
+                        <div class="zubuz-iconbox-icon none-bg">
+                            <img src="{{ asset('/images/about/icon2.png') }}" alt="">
+                        </div>
+                        <div class="zubuz-iconbox-data data-small">
+                            <span>Integrity & Customer-Centricity:</span>
+                            <p>We are committed to delivering exceptional value. We uphold the highest standards of honesty and ethics in everything we do.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End About Section -->
+
+    @php
+        $apps = [
+            1 => ['Products', 'Library-1.svg'],          2 => ['Sales', 'Shop-Bag.svg'],
+            3 => ['Medical Center', 'Medical.svg'],      4 => ['LMS', 'Grad.svg'],
+            5 => ['Relationships', 'Relationships.svg'], 6 => ['Manufacturing', 'Manufacturing.svg'],
+            7 => ['Projects', 'Book.svg'],               8 => ['Tickets', 'Tickets.svg'],
+            9 => ['Purchases', 'Full-Cart.svg'],         10 => ['Marketing', 'Megaphone.svg'],
+            11 => ['HRM', 'Library.svg'],                12 => ['Knowledge Base', 'Book.svg'],
+            13 => ['Documentations', 'Document-Award.svg'], 14 => ['Meeting', 'Book.svg'],
+            15 => ['Fleet Management', 'Car.svg'],       16 => ['Accounting', 'Coins.svg'],
+            17 => ['CRM', 'Relationships.svg'],          18 => ['Messaging', 'Message.svg'],
+            19 => ['Property', 'Home.svg'],              20 => ['School', 'Grad.svg'],
+            21 => ['Services', 'Library-1.svg'],         22 => ['Notice Board', 'Bar-Chart-Empty.svg'],
+            23 => ['Warehouse', 'Packages.svg'],         24 => ['Transfer', 'Transfers.svg'],
+            25 => ['Expenses', 'Expense.svg'],           26 => ['Dashboard', 'Bar-Chart.svg'],
+        ];
+    @endphp
+    <div class="section zubuz-section-padding3" id="apps">
+        <div class="container">
+            <div class="zubuz-section-title center">
+                <h2>All the apps your business needs</h2>
+            </div>
+            <div class="drongo-apps-grid" id="drongo-apps-grid">
+                @foreach ($apps as $id => [$title, $icon])
+                    <a href="{{ route('DrongoERP.appsDetail', $id) }}" class="drongo-app-card">
+                        <img src="{{ asset('images/apps_logo/' . $icon) }}" alt="" width="56" height="56">
+                        <span>{{ $title }}</span>
+                    </a>
+                @endforeach
+            </div>
+            <div class="drongo-apps-more">
+                <button type="button" class="zubuz-default-btn pill" aria-expanded="false" aria-controls="drongo-apps-grid"
+                    onclick="var g = document.getElementById('drongo-apps-grid'), open = g.classList.toggle('is-expanded');
+                             this.setAttribute('aria-expanded', open);
+                             this.querySelector('span').textContent = open ? 'View less' : 'View more';
+                             if (!open) document.getElementById('apps').scrollIntoView();">
+                    <span>View more</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End Apps Section -->
 
     <div class="section zubuz-section-padding5">
         <div class="container">
@@ -263,130 +370,18 @@
     </div>
     <!-- End section -->
 
-    <div class="section zubuz-section-padding3">
+    <div class="section zubuz-section-padding3" id="pricing">
         <div class="container">
             <div class="zubuz-section-title center">
                 <h2>Rational planning for rapid growth</h2>
+                <p>Pick the package that fits today, then switch modules on or off as you grow.</p>
             </div>
-            <div class="pricing-btn">
-                <div class="toggle-btn">
-                    <label>Monthly </label>
-                    <input class="form-check-input btn-toggle price-deck-trigger" type="checkbox" id="flexSwitchCheckDefault" data-pricing-trigger data-target="#table-price-value" checked>
-                    <label>Annually</label>
-                </div>
-            </div>
-            <div class="row zubuz-pricing-four-column" id="table-price-value" data-pricing-dynamic data-value-active="monthly">
-                <div class="col-xl-3 col-md-6">
-                    <div class="zubuz-pricing-wrap">
-                        <div class="zubuz-pricing-header">
-                            <h5>Basic</h5>
-                        </div>
-                        <div class="zubuz-pricing-price">
-                            <h2>$</h2>
-                            <div class="zubuz-price dynamic-value" data-active="7.5" data-monthly="7.5" data-yearly="88"></div>
-                            <p class="dynamic-value" data-active="/Monthly" data-monthly="/Monthly" data-yearly="/Yearly"></p>
-                        </div>
-                        <div class="zubuz-pricing-description">
-                            <p>This plan is typically limited in features and usage</p>
-                        </div>
-                        <div class="zubuz-pricing-body">
-                            <p>Basic plan includes:</p>
-                            <ul>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Cloud ERP</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Stock management</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Inventory barcodes</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Access control</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Users management</li>
-                            </ul>
-                        </div>
-                        <a class="zubuz-pricing-btn" href="#">Try it for free</a>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="zubuz-pricing-wrap">
-                        <div class="zubuz-pricing-header">
-                            <h5>Entrepreneur</h5>
-                        </div>
-                        <div class="zubuz-pricing-price">
-                            <h2>$</h2>
-                            <div class="zubuz-price dynamic-value" data-active="37" data-monthly="37" data-yearly="441"></div>
-                            <p class="dynamic-value" data-active="/Monthly" data-monthly="/Monthly" data-yearly="/Yearly"></p>
-                        </div>
-                        <div class="zubuz-pricing-description">
-                            <p>A simple and affordable plan only for small businesses</p>
-                        </div>
-                        <div class="zubuz-pricing-body">
-                            <p>This plan includes:</p>
-                            <ul>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">7 days free trial</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Unlimited users</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Essential notifications</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Monthly backups</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Free 3 times training</li>
-                            </ul>
-                        </div>
-                        <a class="zubuz-pricing-btn" href="#">Try it for free</a>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="zubuz-pricing-wrap active">
-                        <div class="zubuz-pricing-header">
-                            <h5>Premium</h5>
-                        </div>
-                        <div class="zubuz-pricing-price">
-                            <h2>$</h2>
-                            <div class="zubuz-price dynamic-value" data-active="177" data-monthly="177" data-yearly="2.1k"></div>
-                            <p class="dynamic-value" data-active="/Monthly" data-monthly="/Monthly" data-yearly="/Yearly"></p>
-                        </div>
-                        <div class="zubuz-pricing-description">
-                            <p>This plan is geared toward growing businesses</p>
-                        </div>
-                        <div class="zubuz-pricing-body">
-                            <p>Premium plan includes:</p>
-                            <ul>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">14 days free trial</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Unlimited reports</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Free training</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Daily backups</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">All in app notifications</li>
-                            </ul>
-                        </div>
-                        <a class="zubuz-pricing-btn active" href="#">Try it for free</a>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="zubuz-pricing-wrap">
-                        <div class="zubuz-pricing-header">
-                            <h5>Factory</h5>
-                        </div>
-                        <div class="zubuz-pricing-price">
-                            <h2>$</h2>
-                            <div class="zubuz-price dynamic-value" data-active="258" data-monthly="258" data-yearly="3.1K"></div>
-                            <p class="dynamic-value" data-active="/Monthly" data-monthly="/Monthly" data-yearly="/Yearly"></p>
-                        </div>
-                        <div class="zubuz-pricing-description">
-                            <p>Tailored to the unique needs of large enterprises</p>
-                        </div>
-                        <div class="zubuz-pricing-body">
-                            <p>Factory plan includes:</p>
-                            <ul>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">14&mdash;21 days free trial</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Manufacturing module</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Assets management</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Factory optimized</li>
-                                <li><img src="{{ asset('/images/v3/check.png') }}" alt="">Weekly professional visits</li>
-                            </ul>
-                        </div>
-                        <a class="zubuz-pricing-btn" href="#">Try it for free</a>
-                    </div>
-                </div>
-
-            </div>
+            @include('partials.pricing-plans', ['mode' => 'home'])
         </div>
     </div>
     <!-- End Section -->
 
-    <div class="section zubuz-section-padding bg-light">
+    <div class="section zubuz-section-padding bg-light" id="testimonials">
         <div class="container">
             <div class="zubuz-section-title zubuz-two-column-title">
                 <div class="row">
@@ -395,7 +390,7 @@
                     </div>
                     <div class="col-lg-4 d-flex align-items-center">
                         <div class="zubuz-title-btn">
-                            <a class="zubuz-default-btn pill" href="#">
+                            <a class="zubuz-default-btn pill" href="{{ route('DrongoERP.testimonial') }}">
                                 <span>Browse all testimonials</span>
                             </a>
                         </div>
@@ -443,7 +438,7 @@
     </div>
     <!-- End Section -->
 
-    <div class="section zubuz-section-padding3">
+    <div class="section zubuz-section-padding3" id="faq">
         <div class="container">
             <div class="zubuz-section-title center">
                 <h2>Find all the answers to your management problems</h2>
@@ -453,10 +448,10 @@
                     <div class="zubuz-accordion-header">
                         <p>Q: What makes DrongoERP stand out from competitors?</p>
                         <div class="zubuz-active-icon">
-                            <img src="assets/images/v3/plus.png" alt="">
+                            <img src="{{ asset('/images/v3/') }}plus.png" alt="">
                         </div>
                         <div class="zubuz-inactive-icon">
-                            <img src="assets/images/v3/minus.png" alt="">
+                            <img src="{{ asset('/images/v3/') }}minus.png" alt="">
                         </div>
                     </div>
                     <div class="zubuz-accordion-body">
@@ -467,10 +462,10 @@
                     <div class="zubuz-accordion-header">
                         <p>Q: How secure is the data stored on your platform?</p>
                         <div class="zubuz-active-icon">
-                            <img src="assets/images/v3/plus.png" alt="">
+                            <img src="{{ asset('/images/v3/') }}plus.png" alt="">
                         </div>
                         <div class="zubuz-inactive-icon">
-                            <img src="assets/images/v3/minus.png" alt="">
+                            <img src="{{ asset('/images/v3/') }}minus.png" alt="">
                         </div>
                     </div>
                     <div class="zubuz-accordion-body">
@@ -482,10 +477,10 @@
                     <div class="zubuz-accordion-header">
                         <p>Q: Do you provide free trial for new clients?</p>
                         <div class="zubuz-active-icon">
-                            <img src="assets/images/v3/plus.png" alt="">
+                            <img src="{{ asset('/images/v3/') }}plus.png" alt="">
                         </div>
                         <div class="zubuz-inactive-icon">
-                            <img src="assets/images/v3/minus.png" alt="">
+                            <img src="{{ asset('/images/v3/') }}minus.png" alt="">
                         </div>
                     </div>
                     <div class="zubuz-accordion-body">
@@ -497,10 +492,10 @@
                     <div class="zubuz-accordion-header">
                         <p>Q: What kind of customer support can we expect?</p>
                         <div class="zubuz-active-icon">
-                            <img src="assets/images/v3/plus.png" alt="">
+                            <img src="{{ asset('/images/v3/') }}plus.png" alt="">
                         </div>
                         <div class="zubuz-inactive-icon">
-                            <img src="assets/images/v3/minus.png" alt="">
+                            <img src="{{ asset('/images/v3/') }}minus.png" alt="">
                         </div>
                     </div>
                     <div class="zubuz-accordion-body">
@@ -512,10 +507,10 @@
                     <div class="zubuz-accordion-header">
                         <p>Q: How does your pricing model work, and is there flexibility as our business grows?</p>
                         <div class="zubuz-active-icon plus">
-                            <img src="assets/images/v3/plus.png" alt="">
+                            <img src="{{ asset('/images/v3/') }}plus.png" alt="">
                         </div>
                         <div class="zubuz-inactive-icon">
-                            <img src="assets/images/v3/minus.png" alt="">
+                            <img src="{{ asset('/images/v3/') }}minus.png" alt="">
                         </div>
                     </div>
                     <div class="zubuz-accordion-body">

@@ -1,0 +1,119 @@
+{
+    "slug": "shop",
+    "name": "Shop",
+    "perks": [
+        "7day free trial",
+        "Monthly Backup",
+        "Unlimited User",
+        "Seamless Mobile Access",
+        "Sales Analytics"
+    ],
+    "note": null,
+    "included": [
+        {
+            "name": "Cloud Services/ Cloud ERP",
+            "description": "Using an online network of remote servers rather than a local server or personal computer to store, manage, and process data."
+        },
+        {
+            "name": "Dashboard",
+            "description": "An interface that shows critical performance metrics for your business process quickly and graphically."
+        },
+        {
+            "name": "Settings",
+            "description": "A shared set of features/parameters that define the aspects of your system."
+        },
+        {
+            "name": "List Filtering (Faceted Search)",
+            "description": "Allows you to refine searches based on multiple attributes like date, product code, category, brand, name, suppliers, warehouses, and payment status."
+        },
+        {
+            "name": "PDF Download and Export",
+            "description": "You can download and share a copy of your virtual documents with other people by saving it in Portable Document Format (PDF)."
+        },
+        {
+            "name": "Automatic Barcode Generating",
+            "description": "Generates barcode directly form DrongoERP database for every product."
+        },
+        {
+            "name": "Toggle Fullscreen",
+            "description": "Enhance focus and productivity in our ERP system with “Toggle Fullscreen” – a free feature that removes distractions, allowing you to work without interruptions in a clutter-free, immersive interface."
+        },
+        {
+            "name": "Currency",
+            "description": "Empower your business with the Multi Currency feature. Easily manage multiple international and local currencies for import-export or multi-country operations, ensuring seamless financial transactions and enhanced flexibility."
+        },
+        {
+            "name": "Brand & Category",
+            "description": "Effortless organize and classify your products. Crate unlimited categories and brands o streamline inventory management, enhance searchability. Elevate your business operations with strategic categorization for improved efficiency and inventory optimization."
+        },
+        {
+            "name": "Excel Download and Export",
+            "description": "Enables you to export a copy of the selected data from DrongoERP to a CSV or an Excel format or stores the copied data in a file that can be opened in Excel."
+        },
+        {
+            "name": "Group Permission / Access Control",
+            "description": "Define a group of users, or departments, to subsequently assign view and edit permissions. To grant each user access based on their roles or responsibilities."
+        },
+        {
+            "name": "Email Configuration",
+            "description": "Drongo mail servers will use your credentials to notify you and send messages directly to your email."
+        },
+        {
+            "name": "SMS Configuration",
+            "description": "Drongo servers will use your phone number to notify you and send messages directly to your phone."
+        },
+        {
+            "name": "Payment Gateway Config",
+            "description": "Enables you accept credit card payments (in person or online) by transferring money between your merchant account and a payment processor."
+        },
+        {
+            "name": "Language Preference",
+            "description": "Choose form 19 international and local language preferences in our ERP system. Enhance usability and foster global collaboration effortlessly with this versatile, user-friendly add-on."
+        },
+        {
+            "name": "Notifications",
+            "description": "Stay one step ahead with our “Notification” feature. Get real-time stock quantity alerts and more, ensuring timely and informed actions for a streamlined ERP experience."
+        },
+        {
+            "name": "Profile",
+            "description": "In our ERP system, you get a personalized “Profile” feature at no cost. Take control of your experience by managing your settings and information. Tailor your profile to suit your needs, optimizing your ERP journey with ease and convenience."
+        },
+        {
+            "name": "Unit",
+            "description": "Ensures effortless and accurate product measure elements, and benefit from automatic conversion o sub-units. Seamlessly handle complexities like decimals and diverse units, simplifying logistics and optimizing business processes."
+        }
+    ],
+    "sections": [
+        {
+            "key": "main",
+            "title": "Shop",
+            "groups": [],
+            "addons": [
+                {
+                    "name": "Products/Inventory/Stock Management",
+                    "price": 99.9,
+                    "default": true,
+                    "description": "Comprehensive marketing module to manage campaigns, integrate social media, execute email marketing, and gather actionable insights through analytics and customer feedback. Includes tools for event management, marketing budgeting, forecasting, and managing referral & loyalty programs. Supports geographical analysis of sales data to optimize marketing strategies and customer outreach efforts."
+                },
+                {
+                    "name": "Purchases & Supply Chain",
+                    "price": 99.9,
+                    "default": true,
+                    "description": "Maximize cost saving with support for the end-to-end procurement and logistics processes."
+                },
+                {
+                    "name": "Sales Management/report",
+                    "price": 0,
+                    "default": true,
+                    "description": "Implements sales placement, sales schedules, shipping, status, and invoicing."
+                },
+                {
+                    "name": "Point of Sale (POS)",
+                    "price": 299.9,
+                    "default": true,
+                    "description": "It's the easiest way of selling and navigating through products. Displays products with image, quantity as well as price & enables selling with barcode support."
+                }
+            ]
+        }
+    ]
+}

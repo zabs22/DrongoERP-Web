@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\App; 
 
 class PagesController extends Controller
 {
@@ -78,4 +79,34 @@ class PagesController extends Controller
         
         return view('homepage.indexPage')->with($pageData);
     }
+
+    public function openDrongoERPtestimonial(){
+        $pageData = array(
+            'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',
+            'page' => 'Testimonial'
+        );
+
+        return view('homePage.testimonial')->with($pageData);
+    }
+
+    public function openDrongoERPapps(){
+        $pageData = array(
+            'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',
+            'page' => 'Apps'
+        );
+
+        return view('homePage.apps')->with($pageData);
+    }
+
+    public function openDrongoERPappsDetail($id){
+        $pageData = array(
+            'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',
+            'page' => 'AppsDetail'
+        );
+        $app = App::findOrFail($id); 
+
+        return view('homePage.apps_detail', compact('app'))->with($pageData);
+    }
+
+    
 }
