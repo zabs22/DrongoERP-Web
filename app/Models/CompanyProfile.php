@@ -66,6 +66,7 @@ class CompanyProfile extends Model
 
 
     protected $fillable = [
+        'user_id',
         'companyName',
         'phoneNum',
         'contactPhone',
@@ -96,13 +97,23 @@ class CompanyProfile extends Model
         'numOfBranches',
         'branchLocation',
         'selectedPackage',
-        'totalAmount'
+        'totalAmount',
+        'requestedPackage',
+        'requestedAmount',
+        'upgradeRequestedAt',
     ];
     protected $casts = [
         'businessType' => 'array',
         'businessGroup' => 'array',
         'businessIndustry' => 'array',
-        'totalAmount' => 'array'
+        'totalAmount' => 'array',
+        'requestedAmount' => 'array',
+        'upgradeRequestedAt' => 'datetime',
 
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

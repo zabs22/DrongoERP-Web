@@ -4,6 +4,7 @@
            'signup' → buttons pick the plan for the sign-up already in progress
 --}}
 @php($plans = \App\Support\PackageCatalog::plans())
+@php($accountPlan = auth()->user()?->companyProfile?->selectedPackage)
 
 <div class="drongo-plans" data-plans>
     <div class="drongo-plans__bar">
@@ -40,7 +41,11 @@
                     <i class="fas fa-arrow-right" aria-hidden="true"></i>
                 </a>
 
-                @if ($plan['slug'] === 'special')
+                @if ($mode === 'home' && auth()->user()?->companyProfile)
+                    <a class="drongo-plan__cta" href="{{ route('DrongoERP.package', $plan['slug']) }}">
+                        {{ $accountPlan === $plan['name'] ? 'Your current plan' : 'View plan' }}
+                    </a>
+                @elseif ($plan['slug'] === 'special')
                     <a class="drongo-plan__cta" href="{{ route('DrongoERP.package', $plan['slug']) }}">Choose modules</a>
                 @elseif ($mode === 'signup')
                     <a class="drongo-plan__cta" href="{{ route('DrongoERP.submitChosenPackage', ['package' => $plan['name']]) }}">

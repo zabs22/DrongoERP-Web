@@ -162,8 +162,10 @@ return [
     */
 
     'features' => [
-        Features::registration(),
+        // Sign-up happens through the Get Started form (CompanyProfileController@finalSubmit).
+        // Features::registration(),
         Features::resetPasswords(),
+        // Email verification disabled for now.
         // Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),

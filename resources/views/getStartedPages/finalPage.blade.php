@@ -1,84 +1,86 @@
 @extends('layout/mainlayout')
 
+@php
+    $total = $companyProfile->totalAmount;
+@endphp
+
 @section('page-content')
 
 <style>
-    body{
-        padding: 90px 10px;
-    } 
-    .bg-light {
-        background-color: #ebedef !important;               
-    } 
+    .done-page { padding: 140px 16px 120px; }
+    .done-card { max-width: 600px; margin: 0 auto; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1rem 3rem rgba(0, 0, 0, .12); }
+    .done-card__top { padding: 48px 32px 40px; text-align: center; }
+    .done-card__check { width: 96px; height: 96px; margin: 0 auto 20px; border-radius: 50%; display: grid; place-items: center; background: green; color: #fff; font-size: 36px; }
+    .done-card__top h4 { margin: 0 0 16px; }
+    .done-card__lead { margin: 0 0 12px; color: #000; font-weight: 700; }
+    .done-card__note { margin: 0 0 28px; color: #6c757d; }
+    .done-card__sent { margin: 16px 0 0; color: green; font-weight: 600; }
+    .done-card__details { margin: 0; padding: 28px 32px; background: #ebedef; display: grid; gap: 16px; }
+    .done-card__row { display: grid; grid-template-columns: 24px auto 1fr; align-items: center; column-gap: 10px; }
+    .done-card__row img { max-width: 22px; }
+    .done-card__row dt { margin: 0; font-weight: 700; color: #000; white-space: nowrap; }
+    .done-card__row dd { margin: 0; color: #212529; overflow-wrap: anywhere; }
+    .done-card__row dd a { color: inherit; }
+    @media (max-width: 480px) {
+        .done-card__top, .done-card__details { padding-left: 20px; padding-right: 20px; }
+        .done-card__row { grid-template-columns: 24px 1fr; }
+        .done-card__row dd { grid-column: 2; }
+    }
 </style>
 
-<div class="steps">
-    <div class="step completed"></div>
-    <div class="step completed"></div>
-    <div class="step completed"></div>
-    <div class="step completed"></div>
-    <div class="step completed"></div>
-</div>
+<div class="done-page">
+    <div class="done-card">
+        <div class="done-card__top">
+            <div class="done-card__check" aria-hidden="true">✓</div>
+            <h4>Success!</h4>
+            <p class="done-card__lead">Welcome to DrongoERP! You’re about to embark on an amazing journey.</p>
+            <p class="done-card__note">Your account is ready and you're signed in. Log in any time with your email and the password you chose.</p>
+            <a class="zubuz-default-btn pill" href="{{ route('dashboard') }}"><span>Go to your dashboard</span></a>
+            {{-- Email verification disabled for now. When re-enabled, wrap the two lines above in
+                 @if (auth()->user()->hasVerifiedEmail()) ... @else and show this instead:
+                <p class="done-card__note">We've sent a verification link to <strong>{{ auth()->user()->email }}</strong>. Click it to activate your dashboard, then log in any time with your email and the password you chose.</p>
+                <form method="POST" action="{{ route('verification.send') }}">
+                    @csrf
+                    <button type="submit" class="zubuz-default-btn pill"><span>Resend verification email</span></button>
+                </form>
+                @if (session('status') === 'verification-link-sent')
+                    <p class="done-card__sent">A new verification link is on its way.</p>
+                @endif
+            --}}
+        </div>
 
-<div class="d-flex justify-content-center align-items-center" style="margin-top: 70px; margin-bottom: 150px;">
-    <div class="big-box text-center p-2 rounded shadow-lg w-100" style="max-width: 600px; height: 80vh;">
-        <div class="bg-light-green text-success p-5" style="height: 70%; "> 
-            <div class="d-flex flex-column justify-content-center align-items-center">
-                <div class="circle text-white d-flex justify-content-center align-items-center mb-3" style="font-size: 30px; background-color: green; color: white;">
-                    ✓
+        @if (!empty($accountDetails))
+            <dl class="done-card__details">
+                <div class="done-card__row">
+                    <img src="{{ asset('/images/icon/web_icon.png') }}" alt="">
+                    <dt>Website:</dt>
+                    <dd><a href="https://drongoerp.com/" target="_blank" rel="noopener">https://drongoerp.com/</a></dd>
                 </div>
-                <h4>Success! </h4>
-                <p style="margin-top: 15px; margin-bottom:20px; color: black; font-weight:bold;">
-                    Welcome to DrongoERP! You’re about to embark on an amazing journey.
-                </p>
-                <p class="text-muted mb-3" style="color: black;">
-                    Here are your login details for your convenience:  
-                </p>
-                <p class="text-muted" style="margin: 0 0; color: black;">
-                    Make sure to keep them safe so you can access all the amazing features that await you!
-                </p>
-            </div>
-        </div>
-        @if(!empty($accountDetails))
-        <div class="bg-light text-dark p-4" style="height: 30%; "> 
-            <div class="d-flex align-items-center mb-3" style="margin-left: 40px;">
-                <img src="{{ asset('/images/icon/web_icon.png') }}" alt="Website Icon" style="max-width: 20px;" class="me-2">
-                <h5 class="me-2">Website:</h5>
-                <a href="https://www.{{ \Illuminate\Support\Str::of($accountDetails['company_name'])->lower()->replace(' ', '') }}.drongoERP.com" class="text-dark email-link">
-                    www.{{ \Illuminate\Support\Str::of($accountDetails['company_name'])->lower()->replace(' ', '') }}.drongoERP.com
-                </a>
-
-            </div>
-            <div class="d-flex align-items-center mb-3" style="margin-left: 40px;">
-                <img src="{{ asset('/images/icon/email_icon.png') }}" alt="Email Icon" style="max-width: 25px;" class="me-2">
-                <h5 class="me-2">Email:</h5>
-                <a href="{{ $accountDetails['email'] }}" class="text-dark email-link">
-                    {{ $accountDetails['email'] }}
-                </a>
-                
-            </div>
-            <div class="d-flex align-items-center mb-3" style="margin-left: 40px;">
-                <img src="{{ asset('/images/icon/password_icon.png') }}" alt="Password Icon" style="max-width: 25px;" class="me-2">
-                <h5 class="me-2">Package:</h5> 
-                <span class="text-dark email-link">{{ $selectedPackage }}</span>
-            </div>
-            <div class="d-flex align-items-center mb-3" style="margin-left: 40px;">
-                <img src="{{ asset('/images/icon/password_icon.png') }}" alt="Password Icon" style="max-width: 25px;" class="me-2">
-                <h5 class="me-2">Total Amount:</h5> 
-                @php($total = session('total_amount'))
-                <span class="text-dark email-link">
-                    @if (is_array($total) && isset($total['monthly']))
-                        {{ $total['currency'] ?? 'ETB' }} {{ number_format($total['monthly'], 2) }} / month
-                        @if (!empty($total['modules'])) ({{ count($total['modules']) }} features) @endif
-                    @else
-                        Custom pricing — our team will contact you
-                    @endif
-                </span>
-
-            </div>
-        </div>
-        @endif 
+                <div class="done-card__row">
+                    <img src="{{ asset('/images/icon/email_icon.png') }}" alt="">
+                    <dt>Email:</dt>
+                    <dd>{{ $accountDetails['email'] }}</dd>
+                </div>
+                <div class="done-card__row">
+                    <img src="{{ asset('/images/icon/password_icon.png') }}" alt="">
+                    <dt>Package:</dt>
+                    <dd>{{ $selectedPackage }}</dd>
+                </div>
+                <div class="done-card__row">
+                    <img src="{{ asset('/images/icon/password_icon.png') }}" alt="">
+                    <dt>Total Amount:</dt>
+                    <dd>
+                        @if (is_array($total) && isset($total['monthly']))
+                            {{ $total['currency'] ?? 'ETB' }} {{ number_format($total['monthly'], 2) }} / month
+                            @if (!empty($total['modules'])) ({{ count($total['modules']) }} features) @endif
+                        @else
+                            Custom pricing — our team will contact you
+                        @endif
+                    </dd>
+                </div>
+            </dl>
+        @endif
     </div>
 </div>
 
 @endsection
-

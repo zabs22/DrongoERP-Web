@@ -11,9 +11,15 @@
 @section('page-content')
 <section class="pk-page">
     <div class="container">
-        <a class="pk-back" href="{{ $inSignup ? route('DrongoERP.choosePackage') : route('DrongoERP.home') . '#pricing' }}">
-            <i class="fas fa-arrow-left" aria-hidden="true"></i> All packages
-        </a>
+        @if ($company)
+            <a class="pk-back" href="{{ route('dashboard') }}">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> Back to dashboard
+            </a>
+        @else
+            <a class="pk-back" href="{{ $inSignup ? route('DrongoERP.choosePackage') : route('DrongoERP.home') . '#pricing' }}">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> All packages
+            </a>
+        @endif
 
         <header class="pk-hero">
             <img class="pk-hero__image" src="{{ asset($package['image']) }}" alt="">
@@ -86,11 +92,16 @@
                                     <h3 id="{{ $dialogId }}-title">{{ $group['name'] }}</h3>
                                     <button type="button" class="pk-dialog__close" data-close aria-label="Close">&times;</button>
                                 </div>
+                                <div class="pk-dialog__bulk" role="group" aria-label="Quick select">
+                                    <button type="button" data-select="all">Select all</button>
+                                    <button type="button" data-select="free">Free only</button>
+                                    <button type="button" data-select="none">Clear</button>
+                                </div>
                                 <ul class="pk-dialog__list">
                                     @foreach ($group['modules'] as $module)
                                         <li>
                                             <label class="pk-module">
-                                                <input type="checkbox" name="modules[]" value="{{ $module['id'] }}" data-price="{{ $module['price'] }}" @checked($module['default'])>
+                                                <input type="checkbox" name="modules[]" value="{{ $module['id'] }}" data-price="{{ $module['price'] }}" @checked($currentModules ? in_array($module['name'], $currentModules, true) : $module['default'])>
                                                 <span class="pk-module__check" aria-hidden="true"></span>
                                                 <span class="pk-module__body">
                                                     <span class="pk-module__top">
@@ -123,7 +134,7 @@
                             <div class="pk-tile__head">
                                 <img class="pk-tile__icon" src="{{ asset(PackageCatalog::icon($addon['name'])) }}" alt="">
                                 <label class="pk-switch">
-                                    <input type="checkbox" name="modules[]" value="{{ $addon['id'] }}" data-price="{{ $addon['price'] }}" @checked($addon['default'])
+                                    <input type="checkbox" name="modules[]" value="{{ $addon['id'] }}" data-price="{{ $addon['price'] }}" @checked($currentModules ? in_array($addon['name'], $currentModules, true) : $addon['default'])
                                            aria-label="Include {{ $addon['name'] }}">
                                     <span aria-hidden="true"></span>
                                 </label>
@@ -174,9 +185,29 @@
                     <small><span data-annual></span> billed annually @if ($setupFee) · plus a one-time setup fee of <span data-price-etb="{{ $setupFee }}"></span>@endif</small>
                 </div>
                 <span class="pk-summary__count"><strong data-selected-count></strong> features selected</span>
-                <button type="submit" class="zubuz-default-btn pill pk-summary__cta">
-                    <span>{{ $inSignup ? 'Finish with ' . $package['name'] : 'Get started with ' . $package['name'] }}</span>
-                </button>
+                @if ($accountAction === 'blocked')
+                    <a class="zubuz-default-btn pill pk-summary__cta" href="{{ route('DrongoERP.contact') }}">
+                        <span>Contact us to change plan</span>
+                    </a>
+                @else
+                    <button type="submit" class="zubuz-default-btn pill pk-summary__cta">
+                        <span>{{ match ($accountAction) {
+                            'update' => 'Update my modules',
+                            'switch' => 'Switch to ' . $package['name'],
+                            'request' => 'Request ' . $package['name'],
+                            default => ($inSignup ? 'Finish with ' : 'Get started with ') . $package['name'],
+                        } }}</span>
+                    </button>
+                @endif
+                @if ($company)
+                    <p class="pk-summary__note">
+                        @switch($accountAction)
+                            @case('blocked') You're on the {{ $company->selectedPackage }} plan. Moving to a smaller plan is arranged with our team. @break
+                            @case('request') Our team will confirm pricing with you before the change takes effect. @break
+                            @default Changes apply to your {{ $company->companyName }} account right away.
+                        @endswitch
+                    </p>
+                @endif
                 @error('modules')<p class="pk-summary__error">{{ $message }}</p>@enderror
                 <p class="pk-summary__error" data-empty-error hidden>Select at least one module to continue.</p>
             </div>
@@ -243,6 +274,14 @@
         const opener = e.target.closest('[data-open]');
         if (opener) { document.getElementById(opener.dataset.open).showModal(); return; }
         if (e.target.closest('[data-close]')) { e.target.closest('dialog').close(); return; }
+        // Customize dialog quick picks: every feature, only the free ones, or none.
+        const bulk = e.target.closest('[data-select]');
+        if (bulk) {
+            const mode = bulk.dataset.select;
+            modulesOf(bulk.closest('[data-tile]')).forEach(i => { i.checked = mode === 'all' || (mode === 'free' && price(i) === 0); });
+            refresh();
+            return;
+        }
         const tile = e.target.closest('[data-tile]');
         if (!tile || e.target.closest('label, button, dialog, a')) return;
         const toggle = tile.querySelector('[data-tile-toggle]') || modulesOf(tile)[0];

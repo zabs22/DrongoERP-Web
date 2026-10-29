@@ -10,9 +10,12 @@
         "@tailwindcss/typography": "^0.5.4",
         "autoprefixer": "^10.4.16",
         "axios": "^1.6.4",
-        "laravel-vite-plugin": "^1.0",
+        "country-state-city": "^3.2.1",
+        "intl-tel-input": "^26.9.2",
+        "laravel-vite-plugin": "^3.2.0",
         "postcss": "^8.4.32",
         "tailwindcss": "^3.4.0",
+        "tom-select": "^2.6.2",
         "vite": "^8.3.5"
     }
 }

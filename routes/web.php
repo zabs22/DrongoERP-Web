@@ -6,6 +6,8 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\LiveDemoViewerController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\DashboardController;
+use App\Support\Geo;
 use App\Models\LiveDemoViewer;
 use Faker\Provider\ar_EG\Company;
 
@@ -29,9 +31,14 @@ Route::get('/choose-plan', [FormController::class, 'choosePlan'])->name('DrongoE
 Route::get('/choosePackage', [FormController::class, 'openDrongoERPchoosePackage'])->name('DrongoERP.choosePackage');
 Route::get('/finalPage', [FormController::class, 'openDrongoERPfinalPage'])->name('DrongoERP.finalPage');
 Route::get('/get-started', [FormController::class, 'getStarted'])->name('DrongoERP.getStarted');
+Route::get('/geo/cities/{code}', fn (string $code) => response()->json(Geo::cities($code))->setPublic()->setMaxAge(86400))
+    ->where('code', '[A-Za-z]{2}')->name('DrongoERP.cities');
 Route::post('/get-started', [CompanyProfileController::class, 'submitGetStarted'])->name('form.submitGetStarted');
+Route::post('/get-started/check', [CompanyProfileController::class, 'checkContact'])
+    ->middleware('throttle:30,1')->name('form.checkContact');
 
 // Old sign-up URLs, kept so existing links still land on the right page.
+Route::redirect('/register', '/get-started');
 Route::get('/card{step}', fn (\Illuminate\Http\Request $request) => redirect()->route('DrongoERP.getStarted', $request->query()))->whereNumber('step');
 Route::get('/twoCard', fn () => redirect()->route('DrongoERP.choosePlan'));
 
@@ -55,9 +62,10 @@ foreach (['page1' => 'shop', 'page2' => 'startup', 'page3' => 'factory', 'page4'
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified',
+    // 'verified', // Email verification disabled for now.
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
+    Route::get('/upgrade', [DashboardController::class, 'plans'])->name('upgrade');
+    Route::post('/dashboard/upgrade', [DashboardController::class, 'upgrade'])->name('dashboard.upgrade');
+    Route::delete('/dashboard/upgrade-request', [DashboardController::class, 'cancelRequest'])->name('dashboard.cancelRequest');
 });

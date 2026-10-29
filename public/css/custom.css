@@ -584,6 +584,9 @@ html { scroll-behavior: smooth; }
 .pk-dialog__head img { width: 32px; height: 32px; }
 .pk-dialog__head h3 { flex: 1; margin: 0; font-family: Raleway, sans-serif; font-weight: 700; font-size: 22px; line-height: 28px; }
 .pk-dialog__close { width: 36px; height: 36px; border: 0; border-radius: 50%; background: var(--light-bg); font-size: 22px; line-height: 1; }
+.pk-dialog__bulk { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 24px; border-bottom: 1px solid var(--light-color); }
+.pk-dialog__bulk button { padding: 6px 14px; border: 1px solid var(--light-color); border-radius: 999px; background: #fff; font-size: 14px; font-weight: 600; line-height: 20px; }
+.pk-dialog__bulk button:hover { background: var(--light-bg); }
 .pk-dialog__list { list-style: none; margin: 0; padding: 8px 12px; overflow-y: auto; }
 .pk-dialog__text { margin: 0; padding: 20px 24px; font-size: 16px; line-height: 26px; overflow-y: auto; }
 .pk-dialog__foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 24px; border-top: 1px solid var(--light-color); font-size: 15px; }
@@ -616,6 +619,7 @@ html { scroll-behavior: smooth; }
 .pk-summary__count { font-size: 15px; color: #e0e0e0; }
 .pk-summary__error { flex-basis: 100%; margin: 0; font-size: 14px; color: #FFAB11; }
 .pk-summary__error[hidden] { display: none; }
+.pk-summary__note { flex-basis: 100%; margin: 0; font-size: 14px; color: rgba(255, 255, 255, .7); }
 
 @media (max-width: 1199px) { .pk-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 991px) {

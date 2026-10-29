@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use App\Models\CompanyProfile;
+use App\Models\User;
 use App\Support\PackageCatalog;
+use App\Support\Geo;
 
 class CompanyProfileController extends Controller
 { 
@@ -80,18 +86,59 @@ class CompanyProfileController extends Controller
             }
     } 
    
-    public function submitGetStarted(Request $request){
-        $phone = ['required', 'string', 'regex:/^\+?[0-9\s\-()]{7,20}$/'];
+    // Phones are stored in international (E.164) form: + country code, then up to 14 digits.
+    private function normalizePhones(Request $request): void
+    {
+        foreach (['companyPhone', 'contactPhone'] as $field) {
+            if (is_string($request->input($field))) {
+                $request->merge([$field => preg_replace('/[\s\-().]/', '', $request->input($field))]);
+            }
+        }
+    }
 
-        $validated = $request->validate([
+    // Step 1 details that must not already belong to a signed-up company.
+    private function contactRules(): array
+    {
+        $unusedPhone = function (string $attribute, $value, \Closure $fail) {
+            if (CompanyProfile::where('phoneNum', $value)->orWhere('contactPhone', $value)->exists()) {
+                $fail('This phone number is already registered. Please log in instead.');
+            }
+        };
+        $phone = ['required', 'string', 'regex:/^\+[1-9]\d{6,14}$/', $unusedPhone];
+
+        return [
+            'companyPhone' => $phone,
+            'email'        => 'required|email|max:255|unique:company_profiles,email|unique:users,email',
+            'contactPhone' => $phone,
+        ];
+    }
+
+    private function contactMessages(): array
+    {
+        return [
+            'companyPhone.regex' => 'Please enter a valid phone number with its country code, e.g. +251 911 234 567.',
+            'contactPhone.regex' => 'Please enter a valid phone number with its country code, e.g. +251 911 234 567.',
+            'email.unique'       => 'An account with this email already exists. Please log in instead.',
+        ];
+    }
+
+    // Called by the Get Started form when leaving step 1, so taken details are flagged right away.
+    public function checkContact(Request $request){
+        $this->normalizePhones($request);
+        $request->validate($this->contactRules(), $this->contactMessages());
+
+        return response()->noContent();
+    }
+
+    public function submitGetStarted(Request $request){
+        $this->normalizePhones($request);
+
+        $validated =$request->validate($this->contactRules() + [
             'companyName'           => 'required|string|max:255',
-            'companyPhone'          => $phone,
             'contactName'           => 'required|string|max:255',
             'title'                 => 'required|string|max:255',
-            'email'                 => 'required|email|max:255|unique:company_profiles,email',
-            'contactPhone'          => $phone,
 
-            'countryName'           => 'required|string|max:255',
+            'countryName'           => ['required', Rule::in(Geo::countryNames())],
             'city'                  => 'required|string|max:255',
             'businessGroup'         => ['required', Rule::in(array_keys(CompanyProfile::ORGANIZATIONAL_STRUCTURES))],
             'otherBusinessGroup'    => 'nullable|required_if:businessGroup,other|string|max:255',
@@ -110,9 +157,7 @@ class CompanyProfileController extends Controller
             'existingSystem'        => 'nullable|required_if:requestType,substitution|string|max:255',
             'otherRequestType'      => 'nullable|required_if:requestType,other|string|max:255',
             'password'              => 'required|string|min:8|confirmed',
-        ], [
-            'companyPhone.regex'             => 'Please enter a valid phone number.',
-            'contactPhone.regex'             => 'Please enter a valid phone number.',
+        ], $this->contactMessages() + [
             'otherBusinessGroup.required_if' => 'Please specify your organizational structure.',
             'otherBusinessType.required'     => 'Please specify your nature of business.',
             'otherBusinessIndustry.required' => 'Please specify your industry sector.',
@@ -120,6 +165,7 @@ class CompanyProfileController extends Controller
             'otherRequestType.required_if'   => 'Please specify your request type.',
             'businessType.required'          => 'Select at least one nature of business.',
             'businessIndustry.required'      => 'Select at least one industry sector.',
+            'countryName.in'                 => 'Please choose a country from the list.',
         ]);
 
         [$firstName, $lastName] = array_pad(explode(' ', trim($validated['contactName']), 2), 2, null);
@@ -179,39 +225,61 @@ class CompanyProfileController extends Controller
         return redirect()->route('DrongoERP.package', $slug);
     }
 
-    public function finalSubmit(Request $request){
+    // Finishing the Get Started form is the only way to sign up: it creates the
+    // dashboard login (a Jetstream user) together with the company profile.
+    public function finalSubmit(){
+        $signupData = session('signup_data');
 
-        
-        $companyProfileId = $request->query('companyProfile');
-        session(['companyProfileId' => $companyProfileId]);
-
-        $signupData = session()->get('signup_data', []);
-        $selectedPackage = session('selected_package');
-        $totalAmount = session('total_amount');
-
-
-        $companyProfile = CompanyProfile::create($signupData);
-        $companyProfile->selectedPackage = $selectedPackage;
-        $companyProfile->totalAmount = $totalAmount;
-        $companyProfile->save();
-        
-        if (is_array($companyProfile)) {
-            $companyProfile = (object) $companyProfile; 
+        // Refreshing or revisiting this URL after sign-up must not create the account twice.
+        if (empty($signupData)) {
+            return auth()->check()
+                ? redirect()->route('DrongoERP.finalPage')
+                : redirect()->route('DrongoERP.getStarted');
         }
 
-        $accountDetails = [
-            'email' => $companyProfile->email ?? null,
-            'company_name' => $companyProfile->companyName ?? null,
-            'password' => $companyProfile->password ?? null,
-        ];
+        $password = Arr::pull($signupData, 'password');
 
-        return redirect()->route('DrongoERP.finalPage', [
-            'companyProfile' => $companyProfile->id,
-            'accountDetails' => $accountDetails,
-        ]);
+        if (User::where('email', $signupData['email'])->exists()) {
+            session()->forget('signup_data');
+
+            return redirect()->route('login')
+                ->with('status', 'An account with this email already exists. Please log in.');
+        }
+
+        // A plan picked straight from the pricing section has no module selection: bill its list price.
+        if (session('selected_package') && !session('total_amount')) {
+            $slug = PackageCatalog::slugForName(session('selected_package'));
+            session(['total_amount' => [
+                'package'  => session('selected_package'),
+                'currency' => config('packages.base_currency'),
+                'monthly'  => $slug ? PackageCatalog::plans()[$slug]['price'] : null,
+                'modules'  => [],
+            ]]);
+        }
+
+        $user = DB::transaction(function () use ($signupData, $password) {
+            $user = User::create([
+                'name'     => trim($signupData['firstName'] . ' ' . $signupData['lastName']),
+                'email'    => $signupData['email'],
+                'password' => $password, // already hashed in submitGetStarted
+            ]);
+
+            $user->companyProfile()->create($signupData + [
+                'selectedPackage' => session('selected_package'),
+                'totalAmount'     => session('total_amount'),
+            ]);
+
+            return $user;
+        });
+
+        session()->forget('signup_data');
+        // Email verification disabled for now. Re-enable: sends the verification link and locks the dashboard until it's clicked.
+        // event(new Registered($user));
+        Auth::login($user);
+        request()->session()->regenerate();
+
+        return redirect()->route('DrongoERP.finalPage');
     }
-
-
 }
 
 

@@ -20,6 +20,10 @@ class FormController extends Controller
     }
 
     public function choosePlan(){
+        if (auth()->user()?->companyProfile) {
+            return redirect()->route('dashboard');
+        }
+
         $accountDetails = session()->get('signup_data', []);
         session(['accountDetails' => $accountDetails]); 
 
@@ -42,14 +46,18 @@ class FormController extends Controller
         return view('getStartedPages.choosePackage', compact('accountDetails'))->with($pageData);
     }
 
-    public function openDrongoERPfinalPage(Request $request) {
+    public function openDrongoERPfinalPage() {
+        $companyProfile = auth()->user()?->companyProfile;
 
-        $companyProfileId = $request->input('companyProfileId'); 
-        $accountDetails = $request->input('accountDetails', []);
-        $selectedPackage = session('selected_package'); 
+        if (!$companyProfile) {
+            return redirect()->route('DrongoERP.getStarted');
+        }
 
-
-        $companyProfile = CompanyProfile::find($companyProfileId);
+        $accountDetails = [
+            'email' => $companyProfile->email,
+            'company_name' => $companyProfile->companyName,
+        ];
+        $selectedPackage = $companyProfile->selectedPackage;
 
         $pageData = array(
             'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',
@@ -60,8 +68,16 @@ class FormController extends Controller
     }
     
     public function getStarted(Request $request){
-        // Arriving from a pricing card preselects that plan; a plain visit clears any earlier choice.
         $package = $request->query('package');
+
+        // Signed-up companies already gave their details: send them to the plan instead of the form.
+        if ($request->user()?->companyProfile) {
+            $slug = PackageCatalog::slugForName($package);
+
+            return $slug ? redirect()->route('DrongoERP.package', $slug) : redirect()->route('dashboard');
+        }
+
+        // Arriving from a pricing card preselects that plan; a plain visit clears any earlier choice.
         if (in_array($package, PackageCatalog::names(), true)) {
             session(['selected_package' => $package]);
             // A module selection made on another plan's page no longer applies.

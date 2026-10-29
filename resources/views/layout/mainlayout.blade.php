@@ -88,12 +88,18 @@
 
                         <div class="header-btn header-btn-l1 ms-auto d-none d-xs-inline-flex">
                             <div class="zubuz-header-btn-wrap">
-                                <a class="zubuz-default-btn zubuz-header-btn pill" href="{{ route('DrongoERP.home') }}"><span>Login</span></a>
+                                @auth
+                                    <a class="zubuz-default-btn zubuz-header-btn pill" href="{{ route('dashboard') }}"><span>Dashboard</span></a>
+                                @else
+                                    <a class="zubuz-default-btn zubuz-header-btn pill" href="{{ route('login') }}"><span>Login</span></a>
+                                @endauth
                             </div>
 
-                            <a class="zubuz-default-btn zubuz-header-btn pill" href="{{ route('DrongoERP.getStarted') }}">
-                                <span>Get Started</span>
-                            </a>
+                            @guest
+                                <a class="zubuz-default-btn zubuz-header-btn pill" href="{{ route('DrongoERP.getStarted') }}">
+                                    <span>Get Started</span>
+                                </a>
+                            @endguest
 
                         </div>
                         <!-- mobile menu trigger -->
@@ -152,11 +158,17 @@
 
                         <div class="header-btn header-btn-l1 ms-auto d-none d-xs-inline-flex">
                             <div class="zubuz-header-btn-wrap">
-                                <a class="zubuz-default-btn zubuz-header-btn" href="{{ route('DrongoERP.home') }}"><span>Login</span></a>
+                                @auth
+                                    <a class="zubuz-default-btn zubuz-header-btn" href="{{ route('dashboard') }}"><span>Dashboard</span></a>
+                                @else
+                                    <a class="zubuz-default-btn zubuz-header-btn" href="{{ route('login') }}"><span>Login</span></a>
+                                @endauth
                             </div>
-                            <a class="zubuz-default-btn zubuz-header-btn" href="{{ route('DrongoERP.getStarted')}}">
-                                <span>Get Started</span>
-                            </a>
+                            @guest
+                                <a class="zubuz-default-btn zubuz-header-btn" href="{{ route('DrongoERP.getStarted')}}">
+                                    <span>Get Started</span>
+                                </a>
+                            @endguest
                         </div>
                         <!-- mobile menu trigger -->
                         <div class="mobile-menu-trigger light">
@@ -184,7 +196,11 @@
                             </div>
                             <div class="col-lg-5 d-flex align-items-center">
                                 <div class="zubuz-footer-btn">
-                                    <a class="zubuz-default-btn pill" href="{{ route('DrongoERP.getStarted') }}"><span>Get started now</span></a>
+                                    @auth
+                                        <a class="zubuz-default-btn pill" href="{{ route('dashboard') }}"><span>Go to your dashboard</span></a>
+                                    @else
+                                        <a class="zubuz-default-btn pill" href="{{ route('DrongoERP.getStarted') }}"><span>Get started now</span></a>
+                                    @endauth
                                 </div>
                             </div>
                         </div>

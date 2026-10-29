@@ -16,6 +16,16 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            // DrongoERP orange, matching the marketing site's buttons (--yellow-bg).
+            colors: {
+                brand: {
+                    50: '#FFF6EC',
+                    100: '#FDE8CF',
+                    500: '#F08109',
+                    600: '#D46F04',
+                    700: '#A85805',
+                },
+            },
         },
     },
 

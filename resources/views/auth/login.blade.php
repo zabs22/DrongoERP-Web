@@ -44,5 +44,10 @@
                 </x-button>
             </div>
         </form>
+
+        <p class="mt-6 text-center text-sm text-gray-600">
+            {{ __('New to DrongoERP?') }}
+            <a class="font-semibold text-indigo-700 hover:text-indigo-900" href="{{ route('DrongoERP.home') }}#pricing">{{ __('Choose a plan and get started') }}</a>
+        </p>
     </x-authentication-card>
 </x-guest-layout>
