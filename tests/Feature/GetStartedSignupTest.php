@@ -26,7 +26,7 @@ class GetStartedSignupTest extends TestCase
             'contactPhone' => '+251 922 000000',
             'countryName' => 'Ethiopia',
             'city' => 'Addis Ababa',
-            'businessGroup' => 'plc',
+            'businessGroup' => ['plc'],
             'businessType' => ['retail'],
             'goodService' => 'Electronics',
             'businessIndustry' => ['trading'],

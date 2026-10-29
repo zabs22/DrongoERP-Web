@@ -155,12 +155,12 @@
                     </div>
                 </div>
 
-                <fieldset class="gs-field gs-group @error('businessGroup') is-invalid @enderror @error('otherBusinessGroup') is-invalid @enderror" data-group="businessGroup" data-required>
-                    <legend>Organizational Structure <em>(What is the legal ownership structure of your business?)</em></legend>
+                <fieldset class="gs-field gs-group @error('businessGroup') is-invalid @enderror @error('otherBusinessGroup') is-invalid @enderror" data-group="businessGroup[]" data-required>
+                    <legend>Organizational Structure <em>(What is the legal ownership structure of your business? Select all that apply.)</em></legend>
                     <div class="gs-options">
                         @foreach (CompanyProfile::ORGANIZATIONAL_STRUCTURES as $value => $label)
                             <label class="gs-option">
-                                <input type="radio" name="businessGroup" value="{{ $value }}" @checked(old('businessGroup') === $value) @if ($value === 'other') data-other="otherBusinessGroup" @endif>
+                                <input type="checkbox" name="businessGroup[]" value="{{ $value }}" @checked(in_array($value, (array) old('businessGroup', []), true)) @if ($value === 'other') data-other="otherBusinessGroup" @endif>
                                 <span>{{ $label }}</span>
                             </label>
                         @endforeach
@@ -428,26 +428,52 @@
         return ok;
     }
 
-    // Step 1: ask the server whether the email or either phone already belongs to an account.
-    // If the check itself fails (offline, rate limit), carry on; the final submit checks again.
-    function checkTaken() {
+    // Ask the server whether these step 1 details already belong to an account; resolves to
+    // { field: [message] }. If the check itself fails (offline, rate limit), report nothing:
+    // the final submit checks again.
+    function fetchTaken(data) {
         const body = new FormData();
-        body.append('email', form.elements.email.value.trim());
-        phones.forEach((iti, input) => body.append(input.name, iti.getNumber()));
+        Object.entries(data).forEach(([name, value]) => body.append(name, value));
         return fetch(form.dataset.checkUrl, {
             method: 'POST',
             headers: { 'Accept': 'application/json', 'X-CSRF-TOKEN': form.elements._token.value },
             body,
-        }).then(r => r.status === 422 ? r.json() : null).then(data => {
-            if (!data) return true;
-            Object.entries(data.errors || {}).forEach(([name, messages]) => {
+        }).then(r => r.status === 422 ? r.json() : {}).then(d => d.errors || {}).catch(() => ({}));
+    }
+
+    function checkTaken() {
+        const data = { companyName: form.elements.companyName.value.trim(), email: form.elements.email.value.trim() };
+        phones.forEach((iti, input) => { data[input.name] = iti.getNumber(); });
+        return fetchTaken(data).then(errors => {
+            Object.entries(errors).forEach(([name, messages]) => {
                 setError(form.elements[name].closest('.gs-field'), messages[0]);
             });
             const first = steps[0].querySelector('.is-invalid');
             if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return !first;
-        }).catch(() => true);
+        });
     }
+
+    // Company name and email are first checked when the user leaves the box; after that they are
+    // re-checked as the user types (once they pause), so a fix clears the error straight away.
+    ['companyName', 'email'].forEach(name => {
+        const input = form.elements[name];
+        const field = input.closest('.gs-field');
+        let timer, touched = false;
+        function check() {
+            const value = input.value.trim();
+            const message = checkInput(input);
+            if (message) return setError(field, message);
+            fetchTaken({ [name]: value }).then(errors => {
+                if (input.value.trim() === value) setError(field, errors[name] ? errors[name][0] : '');
+            });
+        }
+        input.addEventListener('blur', () => { touched = true; clearTimeout(timer); check(); });
+        input.addEventListener('input', () => {
+            clearTimeout(timer);
+            if (touched) timer = setTimeout(check, 500);
+        });
+    });
 
     nextBtn.addEventListener('click', async () => {
         if (!validateStep(current)) return;
@@ -468,6 +494,20 @@
         }
         // Send phones in full international form (+2519...), whatever the user typed.
         phones.forEach((iti, input) => { input.value = iti.getNumber(); });
+    });
+
+    // Every other box is checked when the user leaves it (company name and email have their own
+    // check above). Moving within a field, e.g. to a phone's country picker, doesn't count as leaving.
+    form.addEventListener('focusout', e => {
+        const input = e.target;
+        const field = input.closest('.gs-field');
+        if (!field || field.classList.contains('gs-group') || input.closest('.ts-wrapper')) return;
+        if (input.name === 'companyName' || input.name === 'email') return;
+        if (e.relatedTarget && field.contains(e.relatedTarget)) return;
+        setError(field, checkInput(input));
+    });
+    [[countryPicker, countrySelect], [cityPicker, citySelect]].forEach(([picker, select]) => {
+        picker.on('blur', () => setError(select.closest('.gs-field'), checkInput(select)));
     });
 
     // Clear a field's error as soon as the user fixes it.

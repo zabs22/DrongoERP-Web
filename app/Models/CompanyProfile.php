@@ -59,7 +59,7 @@ class CompanyProfile extends Model
 
     public const REQUEST_TYPES = [
         'newSystem' => 'New System',
-        'changePackage' => 'Change in Package',
+        // Package changes are made by signed-in customers from their dashboard, not at sign-up.
         'substitution' => 'A Substitution for an Existing System',
         'other' => 'Other',
     ];

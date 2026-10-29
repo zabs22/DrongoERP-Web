@@ -96,6 +96,14 @@ class CompanyProfileController extends Controller
         }
     }
 
+    // Whether a value is already stored, ignoring case and surrounding spaces ("Acme PLC" = "acme plc ").
+    private function isTaken(string $table, string $column, $value): bool
+    {
+        return DB::table($table)
+            ->whereRaw('LOWER(TRIM(' . DB::getQueryGrammar()->wrap($column) . ')) = ?', [mb_strtolower(trim((string) $value))])
+            ->exists();
+    }
+
     // Step 1 details that must not already belong to a signed-up company.
     private function contactRules(): array
     {
@@ -107,8 +115,17 @@ class CompanyProfileController extends Controller
         $phone = ['required', 'string', 'regex:/^\+[1-9]\d{6,14}$/', $unusedPhone];
 
         return [
+            'companyName'  => ['required', 'string', 'max:255', function (string $attribute, $value, \Closure $fail) {
+                if ($this->isTaken('company_profiles', 'companyName', $value)) {
+                    $fail('A company with this name is already registered. Please log in instead.');
+                }
+            }],
             'companyPhone' => $phone,
-            'email'        => 'required|email|max:255|unique:company_profiles,email|unique:users,email',
+            'email'        => ['required', 'email', 'max:255', function (string $attribute, $value, \Closure $fail) {
+                if ($this->isTaken('company_profiles', 'email', $value) || $this->isTaken('users', 'email', $value)) {
+                    $fail('An account with this email already exists. Please log in instead.');
+                }
+            }],
             'contactPhone' => $phone,
         ];
     }
@@ -118,14 +135,14 @@ class CompanyProfileController extends Controller
         return [
             'companyPhone.regex' => 'Please enter a valid phone number with its country code, e.g. +251 911 234 567.',
             'contactPhone.regex' => 'Please enter a valid phone number with its country code, e.g. +251 911 234 567.',
-            'email.unique'       => 'An account with this email already exists. Please log in instead.',
         ];
     }
 
-    // Called by the Get Started form when leaving step 1, so taken details are flagged right away.
+    // Called by the Get Started form while the user types and when leaving step 1, so taken
+    // details are flagged right away. Only the fields sent are checked.
     public function checkContact(Request $request){
         $this->normalizePhones($request);
-        $request->validate($this->contactRules(), $this->contactMessages());
+        $request->validate(array_intersect_key($this->contactRules(), $request->all()), $this->contactMessages());
 
         return response()->noContent();
     }
@@ -133,15 +150,15 @@ class CompanyProfileController extends Controller
     public function submitGetStarted(Request $request){
         $this->normalizePhones($request);
 
-        $validated =$request->validate($this->contactRules() + [
-            'companyName'           => 'required|string|max:255',
+        $validated = $request->validate($this->contactRules() + [
             'contactName'           => 'required|string|max:255',
             'title'                 => 'required|string|max:255',
 
             'countryName'           => ['required', Rule::in(Geo::countryNames())],
             'city'                  => 'required|string|max:255',
-            'businessGroup'         => ['required', Rule::in(array_keys(CompanyProfile::ORGANIZATIONAL_STRUCTURES))],
-            'otherBusinessGroup'    => 'nullable|required_if:businessGroup,other|string|max:255',
+            'businessGroup'         => 'required|array|min:1',
+            'businessGroup.*'       => Rule::in(array_keys(CompanyProfile::ORGANIZATIONAL_STRUCTURES)),
+            'otherBusinessGroup'    => [Rule::requiredIf(in_array('other', (array) $request->input('businessGroup'), true)), 'nullable', 'string', 'max:255'],
             'businessType'          => 'required|array|min:1',
             'businessType.*'        => Rule::in(array_keys(CompanyProfile::NATURES_OF_BUSINESS)),
             'otherBusinessType'     => [Rule::requiredIf(in_array('other', (array) $request->input('businessType'), true)), 'nullable', 'string', 'max:255'],
@@ -158,7 +175,8 @@ class CompanyProfileController extends Controller
             'otherRequestType'      => 'nullable|required_if:requestType,other|string|max:255',
             'password'              => 'required|string|min:8|confirmed',
         ], $this->contactMessages() + [
-            'otherBusinessGroup.required_if' => 'Please specify your organizational structure.',
+            'otherBusinessGroup.required'    => 'Please specify your organizational structure.',
+            'businessGroup.required'         => 'Select at least one organizational structure.',
             'otherBusinessType.required'     => 'Please specify your nature of business.',
             'otherBusinessIndustry.required' => 'Please specify your industry sector.',
             'existingSystem.required_if'     => 'Please name the system you are replacing.',
@@ -180,7 +198,7 @@ class CompanyProfileController extends Controller
             'email'                 => $validated['email'],
             'countryName'           => $validated['countryName'],
             'city'                  => $validated['city'],
-            'businessGroup'         => [$validated['businessGroup']],
+            'businessGroup'         => $validated['businessGroup'],
             'otherBusinessGroup'    => $validated['otherBusinessGroup'] ?? null,
             'businessType'          => $validated['businessType'],
             'otherBusinessType'     => $validated['otherBusinessType'] ?? null,

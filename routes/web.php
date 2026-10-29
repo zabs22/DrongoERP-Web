@@ -35,7 +35,7 @@ Route::get('/geo/cities/{code}', fn (string $code) => response()->json(Geo::citi
     ->where('code', '[A-Za-z]{2}')->name('DrongoERP.cities');
 Route::post('/get-started', [CompanyProfileController::class, 'submitGetStarted'])->name('form.submitGetStarted');
 Route::post('/get-started/check', [CompanyProfileController::class, 'checkContact'])
-    ->middleware('throttle:30,1')->name('form.checkContact');
+    ->middleware('throttle:60,1')->name('form.checkContact');
 
 // Old sign-up URLs, kept so existing links still land on the right page.
 Route::redirect('/register', '/get-started');
