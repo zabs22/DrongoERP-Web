@@ -30,7 +30,7 @@
 
             @if ($company?->requestedPackage)
                 <a href="{{ route('upgrade') }}" class="flex items-center justify-between gap-4 rounded-lg border border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-900 hover:bg-amber-100">
-                    <span><span class="font-semibold">Upgrade to {{ $company->requestedPackage }} pending.</span> Our team will contact you to confirm pricing.</span>
+                    <span><span class="font-semibold">{{ $company->selectedPackage ? 'Upgrade to' : 'Request for' }} {{ $company->requestedPackage }} pending.</span> Our team will contact you to confirm pricing.</span>
                     <span class="shrink-0 font-semibold">View request &rarr;</span>
                 </a>
             @endif

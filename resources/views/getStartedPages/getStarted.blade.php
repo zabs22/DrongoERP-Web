@@ -3,14 +3,14 @@
 @php
     use App\Models\CompanyProfile;
 
-    $steps = ['Company & Contact', 'Business Profile', 'Industry & Size', 'Request & Account'];
+    $steps = ['Company & Business', 'Request & Account'];
 
     // Which step each field lives on, so a server-side error reopens the right step.
     $fieldSteps = [
-        1 => ['companyName', 'companyPhone', 'contactName', 'title', 'email', 'contactPhone'],
-        2 => ['countryName', 'city', 'businessGroup', 'otherBusinessGroup', 'businessType', 'otherBusinessType', 'goodService'],
-        3 => ['businessIndustry', 'otherBusinessIndustry', 'numOfBranches', 'numOfEmployee'],
-        4 => ['requestType', 'existingSystem', 'otherRequestType', 'password'],
+        1 => ['companyName', 'companyPhone', 'contactName', 'title', 'email', 'contactPhone',
+              'countryName', 'city', 'businessGroup', 'otherBusinessGroup', 'businessType', 'otherBusinessType', 'goodService',
+              'businessIndustry', 'otherBusinessIndustry', 'numOfBranches', 'numOfEmployee'],
+        2 => ['requestType', 'existingSystem', 'otherRequestType', 'password'],
     ];
     $startStep = 1;
     foreach ($fieldSteps as $step => $fields) {
@@ -89,110 +89,125 @@
         <form id="gs-form" action="{{ route('form.submitGetStarted') }}" method="POST" novalidate data-start-step="{{ $startStep }}" data-check-url="{{ route('form.checkContact') }}">
             @csrf
 
-            {{-- Step 1 --}}
+            {{-- Step 1: company, contact, business profile, size and industry --}}
             <div class="gs-step" data-step="1">
-                <h2 class="gs-section-title">Company Information</h2>
-                <div class="gs-row">
-                    <div class="gs-field gs-col-8 @error('companyName') is-invalid @enderror">
-                        <label for="companyName">Company Name</label>
-                        <input type="text" id="companyName" name="companyName" value="{{ old('companyName') }}" required maxlength="255" autocomplete="organization">
-                        <p class="gs-error">@error('companyName'){{ $message }}@enderror</p>
+                <div class="gs-split">
+                    <div>
+                        <h2 class="gs-section-title">Company Information</h2>
+                        <div class="gs-field @error('companyName') is-invalid @enderror">
+                            <label for="companyName">Company Name</label>
+                            <input type="text" id="companyName" name="companyName" value="{{ old('companyName') }}" required maxlength="255" autocomplete="organization">
+                            <p class="gs-error">@error('companyName'){{ $message }}@enderror</p>
+                        </div>
+                        <div class="gs-field @error('companyPhone') is-invalid @enderror">
+                            <label for="companyPhone">Company Phone#</label>
+                            <input type="tel" id="companyPhone" name="companyPhone" value="{{ old('companyPhone') }}" required data-phone autocomplete="tel">
+                            <p class="gs-error">@error('companyPhone'){{ $message }}@enderror</p>
+                        </div>
+
+                        <h2 class="gs-section-title">Contact Information</h2>
+                        <div class="gs-field @error('contactName') is-invalid @enderror">
+                            <label for="contactName">Contact Name</label>
+                            <input type="text" id="contactName" name="contactName" value="{{ old('contactName') }}" required maxlength="255" autocomplete="name">
+                            <p class="gs-error">@error('contactName'){{ $message }}@enderror</p>
+                        </div>
+                        <div class="gs-field @error('title') is-invalid @enderror">
+                            <label for="title">Title / Role</label>
+                            <input type="text" id="title" name="title" value="{{ old('title') }}" required maxlength="255" autocomplete="organization-title">
+                            <p class="gs-error">@error('title'){{ $message }}@enderror</p>
+                        </div>
+                        <div class="gs-field @error('email') is-invalid @enderror">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" value="{{ old('email') }}" required maxlength="255" autocomplete="email">
+                            <p class="gs-error">@error('email'){{ $message }}@enderror</p>
+                        </div>
+                        <div class="gs-field @error('contactPhone') is-invalid @enderror">
+                            <label for="contactPhone">Contact Phone#</label>
+                            <input type="tel" id="contactPhone" name="contactPhone" value="{{ old('contactPhone') }}" required data-phone autocomplete="tel">
+                            <p class="gs-error">@error('contactPhone'){{ $message }}@enderror</p>
+                        </div>
                     </div>
-                    <div class="gs-field gs-col-4 @error('companyPhone') is-invalid @enderror">
-                        <label for="companyPhone">Company Phone#</label>
-                        <input type="tel" id="companyPhone" name="companyPhone" value="{{ old('companyPhone') }}" required data-phone autocomplete="tel">
-                        <p class="gs-error">@error('companyPhone'){{ $message }}@enderror</p>
+
+                    <div>
+                        <h2 class="gs-section-title">Business Information</h2>
+                        <div class="gs-row">
+                            <div class="gs-field gs-col-6 @error('countryName') is-invalid @enderror">
+                                <label for="countryName">Country of Operation</label>
+                                <select id="countryName" name="countryName" required data-country>
+                                    @foreach (\App\Support\Geo::countries() as $country)
+                                        <option value="{{ $country['name'] }}" data-code="{{ $country['code'] }}" @selected(old('countryName', 'Ethiopia') === $country['name'])>{{ $country['name'] }}</option>
+                                    @endforeach
+                                </select>
+                                <p class="gs-error">@error('countryName'){{ $message }}@enderror</p>
+                            </div>
+                            <div class="gs-field gs-col-6 @error('city') is-invalid @enderror">
+                                <label for="city">City</label>
+                                <select id="city" name="city" required data-city data-url="{{ route('DrongoERP.cities', 'XX') }}">
+                                    <option value="">Search or type your city</option>
+                                    @if (old('city'))
+                                        <option value="{{ old('city') }}" selected>{{ old('city') }}</option>
+                                    @endif
+                                </select>
+                                <p class="gs-error">@error('city'){{ $message }}@enderror</p>
+                            </div>
+                        </div>
+
+                        <fieldset class="gs-field gs-group @error('businessGroup') is-invalid @enderror @error('otherBusinessGroup') is-invalid @enderror" data-group="businessGroup[]" data-required>
+                            <legend>Organizational Structure <em>(What is the legal ownership structure of your business? Select all that apply.)</em></legend>
+                            <div class="gs-options">
+                                @foreach (CompanyProfile::ORGANIZATIONAL_STRUCTURES as $value => $label)
+                                    <label class="gs-option">
+                                        <input type="checkbox" name="businessGroup[]" value="{{ $value }}" @checked(in_array($value, (array) old('businessGroup', []), true)) @if ($value === 'other') data-other="otherBusinessGroup" @endif>
+                                        <span>{{ $label }}</span>
+                                    </label>
+                                @endforeach
+                                <input type="text" class="gs-other" id="otherBusinessGroup" name="otherBusinessGroup" value="{{ old('otherBusinessGroup') }}" placeholder="Please specify" maxlength="255" aria-label="Other organizational structure">
+                            </div>
+                            <p class="gs-error">{{ $errors->first('businessGroup') ?: $errors->first('otherBusinessGroup') }}</p>
+                        </fieldset>
+
+                        <fieldset class="gs-field gs-group @error('businessType') is-invalid @enderror @error('otherBusinessType') is-invalid @enderror" data-group="businessType[]" data-required>
+                            <legend>Nature of Business <em>(What does your business do? Select all that apply.)</em></legend>
+                            <div class="gs-options">
+                                @foreach (CompanyProfile::NATURES_OF_BUSINESS as $value => $label)
+                                    <label class="gs-option">
+                                        <input type="checkbox" name="businessType[]" value="{{ $value }}" @checked(in_array($value, (array) old('businessType', []), true)) @if ($value === 'other') data-other="otherBusinessType" @endif>
+                                        <span>{{ $label }}</span>
+                                    </label>
+                                @endforeach
+                                <input type="text" class="gs-other" id="otherBusinessType" name="otherBusinessType" value="{{ old('otherBusinessType') }}" placeholder="Please specify" maxlength="255" aria-label="Other nature of business">
+                            </div>
+                            <p class="gs-error">{{ $errors->first('businessType') ?: $errors->first('otherBusinessType') }}</p>
+                        </fieldset>
+
+                        <div class="gs-field @error('goodService') is-invalid @enderror">
+                            <label for="goodService">What type of goods or services does your company provide? <em>(Optional)</em></label>
+                            <input type="text" id="goodService" name="goodService" value="{{ old('goodService') }}" maxlength="255">
+                            <p class="gs-error">@error('goodService'){{ $message }}@enderror</p>
+                        </div>
+
+                        <h2 class="gs-section-title">Company Size</h2>
+                        <div class="gs-row">
+                            <div class="gs-field gs-col-6 @error('numOfBranches') is-invalid @enderror">
+                                <label for="numOfBranches">Number of Branches</label>
+                                <input type="number" id="numOfBranches" name="numOfBranches" value="{{ old('numOfBranches') }}" required min="0" max="100000" step="1" inputmode="numeric">
+                                <p class="gs-error">@error('numOfBranches'){{ $message }}@enderror</p>
+                            </div>
+                            <div class="gs-field gs-col-6 @error('numOfEmployee') is-invalid @enderror">
+                                <label for="numOfEmployee">Number of Employees</label>
+                                <select id="numOfEmployee" name="numOfEmployee" class="gs-select" required>
+                                    <option value="" disabled @selected(! old('numOfEmployee'))>Select a range</option>
+                                    @foreach (CompanyProfile::EMPLOYEE_RANGES as $value => $label)
+                                        <option value="{{ $value }}" @selected(old('numOfEmployee') === $value)>{{ $label }}</option>
+                                    @endforeach
+                                </select>
+                                <p class="gs-error">@error('numOfEmployee'){{ $message }}@enderror</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <h2 class="gs-section-title">Contact Information</h2>
-                <div class="gs-row">
-                    <div class="gs-field gs-col-8 @error('contactName') is-invalid @enderror">
-                        <label for="contactName">Contact Name</label>
-                        <input type="text" id="contactName" name="contactName" value="{{ old('contactName') }}" required maxlength="255" autocomplete="name">
-                        <p class="gs-error">@error('contactName'){{ $message }}@enderror</p>
-                    </div>
-                    <div class="gs-field gs-col-4 @error('title') is-invalid @enderror">
-                        <label for="title">Title / Role</label>
-                        <input type="text" id="title" name="title" value="{{ old('title') }}" required maxlength="255" autocomplete="organization-title">
-                        <p class="gs-error">@error('title'){{ $message }}@enderror</p>
-                    </div>
-                    <div class="gs-field gs-col-8 @error('email') is-invalid @enderror">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" value="{{ old('email') }}" required maxlength="255" autocomplete="email">
-                        <p class="gs-error">@error('email'){{ $message }}@enderror</p>
-                    </div>
-                    <div class="gs-field gs-col-4 @error('contactPhone') is-invalid @enderror">
-                        <label for="contactPhone">Contact Phone#</label>
-                        <input type="tel" id="contactPhone" name="contactPhone" value="{{ old('contactPhone') }}" required data-phone autocomplete="tel">
-                        <p class="gs-error">@error('contactPhone'){{ $message }}@enderror</p>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Step 2 --}}
-            <div class="gs-step" data-step="2">
-                <h2 class="gs-section-title">Business Information</h2>
-                <div class="gs-row">
-                    <div class="gs-field gs-col-8 @error('countryName') is-invalid @enderror">
-                        <label for="countryName">Country of Operation</label>
-                        <select id="countryName" name="countryName" required data-country>
-                            @foreach (\App\Support\Geo::countries() as $country)
-                                <option value="{{ $country['name'] }}" data-code="{{ $country['code'] }}" @selected(old('countryName', 'Ethiopia') === $country['name'])>{{ $country['name'] }}</option>
-                            @endforeach
-                        </select>
-                        <p class="gs-error">@error('countryName'){{ $message }}@enderror</p>
-                    </div>
-                    <div class="gs-field gs-col-4 @error('city') is-invalid @enderror">
-                        <label for="city">City</label>
-                        <select id="city" name="city" required data-city data-url="{{ route('DrongoERP.cities', 'XX') }}">
-                            <option value="">Search or type your city</option>
-                            @if (old('city'))
-                                <option value="{{ old('city') }}" selected>{{ old('city') }}</option>
-                            @endif
-                        </select>
-                        <p class="gs-error">@error('city'){{ $message }}@enderror</p>
-                    </div>
-                </div>
-
-                <fieldset class="gs-field gs-group @error('businessGroup') is-invalid @enderror @error('otherBusinessGroup') is-invalid @enderror" data-group="businessGroup[]" data-required>
-                    <legend>Organizational Structure <em>(What is the legal ownership structure of your business? Select all that apply.)</em></legend>
-                    <div class="gs-options">
-                        @foreach (CompanyProfile::ORGANIZATIONAL_STRUCTURES as $value => $label)
-                            <label class="gs-option">
-                                <input type="checkbox" name="businessGroup[]" value="{{ $value }}" @checked(in_array($value, (array) old('businessGroup', []), true)) @if ($value === 'other') data-other="otherBusinessGroup" @endif>
-                                <span>{{ $label }}</span>
-                            </label>
-                        @endforeach
-                        <input type="text" class="gs-other" id="otherBusinessGroup" name="otherBusinessGroup" value="{{ old('otherBusinessGroup') }}" placeholder="Please specify" maxlength="255" aria-label="Other organizational structure">
-                    </div>
-                    <p class="gs-error">{{ $errors->first('businessGroup') ?: $errors->first('otherBusinessGroup') }}</p>
-                </fieldset>
-
-                <fieldset class="gs-field gs-group @error('businessType') is-invalid @enderror @error('otherBusinessType') is-invalid @enderror" data-group="businessType[]" data-required>
-                    <legend>Nature of Business <em>(What does your business do? Select all that apply.)</em></legend>
-                    <div class="gs-options">
-                        @foreach (CompanyProfile::NATURES_OF_BUSINESS as $value => $label)
-                            <label class="gs-option">
-                                <input type="checkbox" name="businessType[]" value="{{ $value }}" @checked(in_array($value, (array) old('businessType', []), true)) @if ($value === 'other') data-other="otherBusinessType" @endif>
-                                <span>{{ $label }}</span>
-                            </label>
-                        @endforeach
-                        <input type="text" class="gs-other" id="otherBusinessType" name="otherBusinessType" value="{{ old('otherBusinessType') }}" placeholder="Please specify" maxlength="255" aria-label="Other nature of business">
-                    </div>
-                    <p class="gs-error">{{ $errors->first('businessType') ?: $errors->first('otherBusinessType') }}</p>
-                </fieldset>
-
-                <div class="gs-field @error('goodService') is-invalid @enderror">
-                    <label for="goodService">What type of goods or services does your company provide? <em>(Please specify)</em></label>
-                    <input type="text" id="goodService" name="goodService" value="{{ old('goodService') }}" required maxlength="255">
-                    <p class="gs-error">@error('goodService'){{ $message }}@enderror</p>
-                </div>
-            </div>
-
-            {{-- Step 3 --}}
-            <div class="gs-step" data-step="3">
-                <h2 class="gs-section-title">Industry &amp; Size</h2>
+                <h2 class="gs-section-title">Industry</h2>
                 <fieldset class="gs-field gs-group @error('businessIndustry') is-invalid @enderror @error('otherBusinessIndustry') is-invalid @enderror" data-group="businessIndustry[]" data-required>
                     <legend>Industry Sector <em>(Which industry does the business operate in?)</em></legend>
                     <div class="gs-options gs-options--grid">
@@ -206,30 +221,10 @@
                     <input type="text" class="gs-other" id="otherBusinessIndustry" name="otherBusinessIndustry" value="{{ old('otherBusinessIndustry') }}" placeholder="Please specify your industry" maxlength="255" aria-label="Other industry sector">
                     <p class="gs-error">{{ $errors->first('businessIndustry') ?: $errors->first('otherBusinessIndustry') }}</p>
                 </fieldset>
-
-                <div class="gs-row">
-                    <div class="gs-field gs-col-3 @error('numOfBranches') is-invalid @enderror">
-                        <label for="numOfBranches">Number of Branches</label>
-                        <input type="number" id="numOfBranches" name="numOfBranches" value="{{ old('numOfBranches') }}" required min="0" max="100000" step="1" inputmode="numeric">
-                        <p class="gs-error">@error('numOfBranches'){{ $message }}@enderror</p>
-                    </div>
-                    <fieldset class="gs-field gs-group gs-col-9 @error('numOfEmployee') is-invalid @enderror" data-group="numOfEmployee" data-required>
-                        <legend>Number of Employees <em>(Select the appropriate range)</em></legend>
-                        <div class="gs-options">
-                            @foreach (CompanyProfile::EMPLOYEE_RANGES as $value => $label)
-                                <label class="gs-option">
-                                    <input type="radio" name="numOfEmployee" value="{{ $value }}" @checked(old('numOfEmployee') === $value)>
-                                    <span>{{ $label }}</span>
-                                </label>
-                            @endforeach
-                        </div>
-                        <p class="gs-error">@error('numOfEmployee'){{ $message }}@enderror</p>
-                    </fieldset>
-                </div>
             </div>
 
-            {{-- Step 4 --}}
-            <div class="gs-step" data-step="4">
+            {{-- Step 2 --}}
+            <div class="gs-step" data-step="2">
                 <h2 class="gs-section-title">Request Type</h2>
                 <fieldset class="gs-field gs-group @error('requestType') is-invalid @enderror @error('existingSystem') is-invalid @enderror @error('otherRequestType') is-invalid @enderror" data-group="requestType" data-required>
                     <legend>Request Type <em>(Select only one request type. A new request form is required for each request type.)</em></legend>

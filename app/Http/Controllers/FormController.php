@@ -8,42 +8,17 @@ use App\Support\PackageCatalog;
 
 class FormController extends Controller
 {
-
-    public function openDrongoERPform(Request $request){
-        $pageData = array(
-            'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',
-            'page' => 'welcomePage'
-        );
-        $requestType = $request->query('requestType', 'newSystem');
-
-        return view('getStartedPages.form', compact('requestType'))->with($pageData);
-    }
-
-    public function choosePlan(){
+    public function openDrongoERPchoosePackage(){
         if (auth()->user()?->companyProfile) {
             return redirect()->route('dashboard');
         }
-
-        $accountDetails = session()->get('signup_data', []);
-        session(['accountDetails' => $accountDetails]); 
-
-        $pageData = array(
-            'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',
-            'page' => 'choosePlan'
-        );
-
-        return view('getStartedPages.choosePlan', compact('accountDetails'))->with($pageData);
-    }
-
-    public function openDrongoERPchoosePackage(){
-        $accountDetails = session()->get('accountDetails'); 
 
         $pageData = array(
             'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',
             'page' => 'choosePackage'
         );
 
-        return view('getStartedPages.choosePackage', compact('accountDetails'))->with($pageData);
+        return view('getStartedPages.choosePackage')->with($pageData);
     }
 
     public function openDrongoERPfinalPage() {
@@ -57,7 +32,8 @@ class FormController extends Controller
             'email' => $companyProfile->email,
             'company_name' => $companyProfile->companyName,
         ];
-        $selectedPackage = $companyProfile->selectedPackage;
+        $selectedPackage = $companyProfile->selectedPackage
+            ?? ($companyProfile->requestedPackage ? $companyProfile->requestedPackage . ' (requested)' : null);
 
         $pageData = array(
             'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',

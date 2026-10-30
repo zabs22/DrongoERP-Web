@@ -358,6 +358,10 @@ html { scroll-behavior: smooth; }
 .gs-section-title { font-family: Inter, sans-serif; font-weight: 300; font-size: 24px; line-height: 32px; color: #8a8a8a; margin: 28px 0 14px; }
 .gs-step > .gs-section-title:first-child { margin-top: 0; }
 
+/* Two side-by-side columns of sections within a step. */
+.gs-split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+.gs-split > div > .gs-section-title:first-child { margin-top: 0; }
+
 .gs-row { display: grid; grid-template-columns: repeat(12, 1fr); gap: 0 24px; }
 .gs-col-3 { grid-column: span 3; }
 .gs-col-4 { grid-column: span 4; }
@@ -384,6 +388,15 @@ html { scroll-behavior: smooth; }
     border: 0 !important; border-bottom: 1px solid var(--light-color) !important;
     padding: 6px 0 !important; font-size: 16px; line-height: 24px; color: var(--heading-color); outline: none; box-shadow: none;
 }
+.gs-page .gs-field select.gs-select {
+    width: 100%; height: auto; border-radius: 0; border: 0; border-bottom: 1px solid var(--light-color);
+    padding: 6px 24px 6px 0; font-size: 16px; line-height: 24px; color: var(--heading-color); outline: none; cursor: pointer;
+    appearance: none; -webkit-appearance: none;
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0h10L5 6z' fill='%238a8a8a'/%3E%3C/svg%3E") no-repeat right 4px center;
+}
+.gs-page .gs-field select.gs-select:focus { border-bottom-color: var(--yellow-bg); }
+.gs-page .gs-field select.gs-select:invalid { color: #b5b5b5; }
+.gs-page .gs-field select.gs-select option { color: var(--heading-color); }
 .gs-page .gs-field input::placeholder { color: #b5b5b5; }
 .gs-page .gs-field input:focus { border-bottom-color: var(--yellow-bg) !important; }
 .gs-error { min-height: 18px; margin: 4px 0 0; font-size: 13px; line-height: 18px; color: var(--orange-color); }
@@ -428,7 +441,8 @@ html { scroll-behavior: smooth; }
     .gs-page { padding-top: 130px; }
     .gs-head h1 { font-size: 40px; }
     .gs-logo { width: 104px; height: 104px; }
-    .gs-row { grid-template-columns: 1fr; }
+    .gs-split, .gs-row { grid-template-columns: 1fr; }
+    .gs-split > div + div > .gs-section-title:first-child { margin-top: 28px; }
     .gs-row > [class*="gs-col-"] { grid-column: auto; }
     .gs-options--grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .gs-actions { flex-wrap: wrap; }

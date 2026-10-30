@@ -26,8 +26,6 @@ Route::get('/testimonial', [PagesController::class, 'openDrongoERPtestimonial'])
 Route::get('/apps', [PagesController::class, 'openDrongoERPapps'])->name('DrongoERP.apps');
 Route::get('/appsDetail/{id}', [PagesController::class, 'openDrongoERPappsDetail'])->name('DrongoERP.appsDetail');
 
-Route::get('/form', [FormController::class, 'openDrongoERPform'])->name('DrongoERP.form');
-Route::get('/choose-plan', [FormController::class, 'choosePlan'])->name('DrongoERP.choosePlan');
 Route::get('/choosePackage', [FormController::class, 'openDrongoERPchoosePackage'])->name('DrongoERP.choosePackage');
 Route::get('/finalPage', [FormController::class, 'openDrongoERPfinalPage'])->name('DrongoERP.finalPage');
 Route::get('/get-started', [FormController::class, 'getStarted'])->name('DrongoERP.getStarted');
@@ -39,13 +37,14 @@ Route::post('/get-started/check', [CompanyProfileController::class, 'checkContac
 
 // Old sign-up URLs, kept so existing links still land on the right page.
 Route::redirect('/register', '/get-started');
+Route::redirect('/form', '/get-started');
 Route::get('/card{step}', fn (\Illuminate\Http\Request $request) => redirect()->route('DrongoERP.getStarted', $request->query()))->whereNumber('step');
-Route::get('/twoCard', fn () => redirect()->route('DrongoERP.choosePlan'));
+Route::redirect('/twoCard', '/choosePackage');
+Route::redirect('/choose-plan', '/choosePackage');
 
 Route::get('/submitChosenPackage/{package}', [CompanyProfileController::class, 'submitChosenPackage'])->name('DrongoERP.submitChosenPackage');
 Route::get('/submitSeeMore/{package}/{page?}', [CompanyProfileController::class, 'submitSeeMore'])->name('DrongoERP.submitSeeMore');
 Route::get('/finalSubmit', [CompanyProfileController::class, 'finalSubmit'])->name('DrongoERP.finalSubmit');
-Route::post('/createCompanyProfile', [CompanyProfileController::class, 'createCompanyProfile'])->name('form.create');
 
 Route::post('/liveDemoViewerSubmit', [LiveDemoViewerController::class, 'liveDemoViewerSubmit'])->name('DrongoERP.liveDemoViewerSubmit');
 Route::post('/contactMessage', [LiveDemoViewerController::class, 'contactMessage'])->name('DrongoERP.contactMessage');

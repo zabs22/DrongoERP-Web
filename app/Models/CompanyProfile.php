@@ -71,7 +71,6 @@ class CompanyProfile extends Model
         'phoneNum',
         'contactPhone',
         'email',
-        'password',
         'firstName',
         'lastName',
         'title',

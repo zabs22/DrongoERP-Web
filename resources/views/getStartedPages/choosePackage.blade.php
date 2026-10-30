@@ -18,7 +18,7 @@
     @include('partials.pricing-plans', ['mode' => 'signup'])
 
     <div class="choose-package__back">
-        <a href="{{ route('DrongoERP.choosePlan') }}" class="gs-btn--ghost"><i class="fas fa-arrow-left" aria-hidden="true"></i> Previous</a>
+        <a href="{{ route('DrongoERP.getStarted') }}" class="gs-btn--ghost"><i class="fas fa-arrow-left" aria-hidden="true"></i> Previous</a>
     </div>
 </div>
 @endsection

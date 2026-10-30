@@ -8,6 +8,7 @@ use App\Support\PackageCatalog;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
 use Tests\TestCase;
 
@@ -53,7 +54,7 @@ class GetStartedSignupTest extends TestCase
         $this->assertAuthenticatedAs($user);
         $this->assertSame('Abebe Kebede', $user->name);
         $this->assertSame($package, $user->companyProfile->selectedPackage);
-        $this->assertNull($user->companyProfile->password);
+        $this->assertFalse(Schema::hasColumn('company_profiles', 'password'));
 
         // Email verification disabled for now: no email is sent and the dashboard opens straight away.
         Notification::assertNothingSent();
@@ -74,6 +75,58 @@ class GetStartedSignupTest extends TestCase
         auth()->guard('web')->logout();
         $this->post(route('login'), ['email' => 'abebe@acme.test', 'password' => 'secret-password'])
             ->assertRedirect(route('dashboard'));
+    }
+
+    public function test_without_a_plan_the_form_leads_to_the_package_list(): void
+    {
+        $this->post(route('form.submitGetStarted'), $this->formData())
+            ->assertRedirect(route('DrongoERP.choosePackage'));
+
+        $this->get(route('DrongoERP.choosePackage'))->assertOk();
+        $this->get('/choose-plan')->assertRedirect('/choosePackage');
+    }
+
+    public function test_only_catalogue_plans_can_be_chosen(): void
+    {
+        $this->post(route('form.submitGetStarted'), $this->formData());
+
+        $this->get(route('DrongoERP.submitChosenPackage', 'Free Trial'))->assertNotFound();
+        $this->assertSame(0, User::count());
+    }
+
+    public function test_a_plan_priced_on_request_is_recorded_as_a_request_at_sign_up(): void
+    {
+        $this->post(route('form.submitGetStarted'), $this->formData());
+        $this->get(route('DrongoERP.submitChosenPackage', 'Enterprise'))
+            ->assertRedirect(route('DrongoERP.finalSubmit'));
+        $this->get(route('DrongoERP.finalSubmit'));
+
+        $company = CompanyProfile::firstOrFail();
+        $this->assertNull($company->selectedPackage);
+        $this->assertSame('Enterprise', $company->requestedPackage);
+        $this->assertNotNull($company->upgradeRequestedAt);
+
+        $this->get(route('DrongoERP.finalPage'))->assertOk()->assertSee('Enterprise (requested)');
+        $this->get(route('dashboard'))->assertOk()->assertSee('Request for Enterprise pending');
+        $this->get(route('upgrade'))->assertOk()->assertDontSee('Your current plan stays active');
+    }
+
+    public function test_a_plan_with_a_price_is_active_straight_after_sign_up(): void
+    {
+        $this->post(route('form.submitGetStarted'), $this->formData());
+        $this->get(route('DrongoERP.submitChosenPackage', 'Startup'));
+        $this->get(route('DrongoERP.finalSubmit'));
+
+        $company = CompanyProfile::firstOrFail();
+        $this->assertSame('Startup', $company->selectedPackage);
+        $this->assertSame(4166, $company->totalAmount['monthly']);
+        $this->assertNull($company->requestedPackage);
+    }
+
+    public function test_old_sign_up_form_url_redirects_to_get_started(): void
+    {
+        $this->get('/form')->assertRedirect('/get-started');
+        $this->post('/createCompanyProfile')->assertNotFound();
     }
 
     public function test_email_already_registered_is_rejected(): void
@@ -117,6 +170,14 @@ class GetStartedSignupTest extends TestCase
 
         $this->post(route('form.submitGetStarted'), $this->formData(['countryName' => 'Kenya', 'city' => 'A small town not in the list']))
             ->assertSessionHasNoErrors();
+    }
+
+    public function test_goods_or_services_is_optional(): void
+    {
+        $this->post(route('form.submitGetStarted'), $this->formData(['goodService' => '']))
+            ->assertSessionHasNoErrors();
+
+        $this->assertNull(session('signup_data.goodService'));
     }
 
     public function test_jetstream_register_page_sends_visitors_to_get_started(): void

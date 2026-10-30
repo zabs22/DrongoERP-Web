@@ -26,13 +26,13 @@
                     <div class="flex gap-3">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="size-6 shrink-0 stroke-amber-600" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         <div>
-                            <p class="font-semibold text-amber-900">Upgrade to {{ $company->requestedPackage }} pending</p>
+                            <p class="font-semibold text-amber-900">{{ $company->selectedPackage ? 'Upgrade to' : 'Request for' }} {{ $company->requestedPackage }} pending</p>
                             <p class="mt-1 text-sm text-amber-800">
                                 Requested on {{ $company->upgradeRequestedAt->format('F j, Y') }}
                                 @if (!empty($requestedTotal['modules']))
                                     with {{ count($requestedTotal['modules']) }} modules (estimated {{ $requestedTotal['currency'] }} {{ number_format($requestedTotal['monthly']) }} / month)
                                 @endif.
-                                Our team will contact you to confirm pricing. Your current plan stays active until then.
+                                Our team will contact you to confirm pricing.@if ($company->selectedPackage) Your current plan stays active until then.@endif
                             </p>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                             <div>
                                 <h3 id="cancel-request-title" class="text-lg font-semibold text-gray-900">Cancel your {{ $company->requestedPackage }} request?</h3>
                                 <p class="mt-2 text-sm text-gray-600">
-                                    Our team will stop working on your upgrade to {{ $company->requestedPackage }}, and you'll stay on the {{ $company->selectedPackage }} plan.
+                                    Our team will stop working on your request for {{ $company->requestedPackage }}{{ $company->selectedPackage ? ", and you'll stay on the {$company->selectedPackage} plan" : '' }}.
                                     You can request it again any time.
                                 </p>
                             </div>

@@ -15,77 +15,7 @@ use App\Support\PackageCatalog;
 use App\Support\Geo;
 
 class CompanyProfileController extends Controller
-{ 
-
-    public function createCompanyProfile(Request $request){
-        try{
-            $validatedData = $request->validate([
-                'companyName'           => 'required|string|max:255',
-                'phoneNum'              => 'required|string|max:12',
-                'email'                 => 'required|email|unique:company_profiles,email',
-                'firstName'             => 'required|email|max:255',
-                'lastName'              => 'required|email|max:255',
-                'title'                 => 'required|string|max:255',
-                'countryName'               => 'required|string|max:20',
-                'requestType'           => 'required|string|max:255',
-                'existingSystem'        => 'nullable|string|max:255',
-
-                'businessType'          => 'required|array',
-                'otherBusinessType'     => 'nullable|string|max:255',
-                'businessGroup'         => 'required|array',
-                'otherBusinessGroup'    => 'nullable|string|max:255',
-                'businessIndustry'      => 'required|array',
-                'otherBusinessIndustry' => 'nullable|string|max:255',
-                
-
-                'street'                => 'nullable|string|max:255',
-                'city'                  => 'nullable|string|max:255',
-                'state'                 => 'nullable|string|max:255',
-                'zipCode'               => 'nullable|string|max:10',
-                'numOfCountry'          => 'nullable|integer',
-                'numOfBranch'           => 'nullable|integer',
-                'numOfEmployees'        => 'nullable|integer',
-                'branchLocation'        => 'nullable|string|max:255',
-
-                'password'              => 'required|string|max:255',
-                'confirmPassword'       => 'string',
-
-                
-            ]);
-
-        
-            if ($request->has('businessType')) {
-                $validatedData['businessType'] = json_encode($request->businessType);
-            }
-            if ($request->has('businessGroup')) {
-                $validatedData['businessGroup'] = json_encode($request->businessGroup);
-            }
-            if ($request->has('businessIndustry')) {
-                $validatedData['businessIndustry'] = json_encode($request->businessIndustry);
-            } 
-        
-        
-            $companyProfile = CompanyProfile::create($validatedData); 
-
-            session(['companyProfileId' => $companyProfile->id]);
-
-            session(['form_answers' => $validatedData]);
-
-            return redirect()->route('DrongoERP.choosePlan', ['id' => $companyProfile->id])->withInput($validatedData);
-        
-        }
-            
-            catch (\Illuminate\Validation\ValidationException $e) {
-                return redirect()->back()
-                    ->withErrors($e->validator)
-                    ->withInput(); 
-
-            } catch (\Exception $e) {
-                return redirect()->back()
-                    ->with('error', 'An error occurred: ' . $e->getMessage());
-            }
-    } 
-   
+{
     // Phones are stored in international (E.164) form: + country code, then up to 14 digits.
     private function normalizePhones(Request $request): void
     {
@@ -162,7 +92,7 @@ class CompanyProfileController extends Controller
             'businessType'          => 'required|array|min:1',
             'businessType.*'        => Rule::in(array_keys(CompanyProfile::NATURES_OF_BUSINESS)),
             'otherBusinessType'     => [Rule::requiredIf(in_array('other', (array) $request->input('businessType'), true)), 'nullable', 'string', 'max:255'],
-            'goodService'           => 'required|string|max:255',
+            'goodService'           => 'nullable|string|max:255',
 
             'businessIndustry'      => 'required|array|min:1',
             'businessIndustry.*'    => Rule::in(array_keys(CompanyProfile::INDUSTRY_SECTORS)),
@@ -202,7 +132,7 @@ class CompanyProfileController extends Controller
             'otherBusinessGroup'    => $validated['otherBusinessGroup'] ?? null,
             'businessType'          => $validated['businessType'],
             'otherBusinessType'     => $validated['otherBusinessType'] ?? null,
-            'goodService'           => $validated['goodService'],
+            'goodService'           => $validated['goodService'] ?? null,
             'businessIndustry'      => $validated['businessIndustry'],
             'otherBusinessIndustry' => $validated['otherBusinessIndustry'] ?? null,
             'numOfBranches'         => (int) $validated['numOfBranches'],
@@ -221,16 +151,16 @@ class CompanyProfileController extends Controller
             return redirect()->route('DrongoERP.finalSubmit');
         }
 
-        return redirect()->route('DrongoERP.choosePlan');
+        return redirect()->route('DrongoERP.choosePackage');
     }
 
     public function submitChosenPackage($package) {
-        $slug = PackageCatalog::slugForName($package);
-        $price = $slug ? PackageCatalog::plans()[$slug]['price'] : 0;
+        $slug = PackageCatalog::slugForName($package) ?? abort(404);
+        $plan = PackageCatalog::plans()[$slug];
 
         session([
-            'selected_package' => $package,
-            'total_amount' => ['package' => $package, 'currency' => config('packages.base_currency'), 'monthly' => $price, 'modules' => []],
+            'selected_package' => $plan['name'],
+            'total_amount' => ['package' => $plan['name'], 'currency' => config('packages.base_currency'), 'monthly' => $plan['price'], 'modules' => []],
         ]);
 
         return redirect()->route('DrongoERP.finalSubmit');
@@ -282,10 +212,14 @@ class CompanyProfileController extends Controller
                 'password' => $password, // already hashed in submitGetStarted
             ]);
 
-            $user->companyProfile()->create($signupData + [
-                'selectedPackage' => session('selected_package'),
-                'totalAmount'     => session('total_amount'),
-            ]);
+            // Plans priced on request start as a request for the sales team, as they do after sign-up.
+            $slug = PackageCatalog::slugForName(session('selected_package'));
+            $plan = $slug ? PackageCatalog::plans()[$slug] : null;
+            $choice = !$plan ? [] : ($plan['price'] === null
+                ? ['requestedPackage' => $plan['name'], 'requestedAmount' => session('total_amount'), 'upgradeRequestedAt' => now()]
+                : ['selectedPackage' => $plan['name'], 'totalAmount' => session('total_amount')]);
+
+            $user->companyProfile()->create($signupData + $choice);
 
             return $user;
         });
