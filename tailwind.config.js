@@ -25,6 +25,11 @@ export default {
                     600: '#D46F04',
                     700: '#A85805',
                 },
+                // Blue-black drongo plumage, used by the dashboard's glass theme.
+                plumage: {
+                    100: '#DCE3F7',
+                    900: '#12204A',
+                },
             },
         },
     },
