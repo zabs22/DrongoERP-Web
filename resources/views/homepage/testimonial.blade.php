@@ -242,7 +242,7 @@
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                             </ul>
-                            <p>"DrongoERP has revolutionized our manufacturing processes, providing real-time visibility into production, supply chain, and quality control. This has significantly enhanced our efficiency and reduces our expenses.”</p>
+                            <p>"Droongo has revolutionized our manufacturing processes, providing real-time visibility into production, supply chain, and quality control. This has significantly enhanced our efficiency and reduces our expenses.”</p>
                             <div class="zubuz-testimonial-authors-wraps">
                                 <div class="zubuz-testimonial-authors">
                                     <p>Ephrem Birhanu</p>
@@ -278,7 +278,7 @@
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                             </ul>
-                            <p>"The implementation of DrongoERP has led to significant improvements in our operational efficiency and streamlined processes across our entire system. It has empowered us to manage inventory, sales, and procurement with greater accuracy and real-time insights, allowing us to make more informed decisions. Additionally we've observed is the automation of our workflows."</p>
+                            <p>"The implementation of Droongo has led to significant improvements in our operational efficiency and streamlined processes across our entire system. It has empowered us to manage inventory, sales, and procurement with greater accuracy and real-time insights, allowing us to make more informed decisions. Additionally we've observed is the automation of our workflows."</p>
                             <div class="zubuz-testimonial-authors-wraps">
                                 <div class="zubuz-testimonial-authors">
                                     <p>Mr. Ture Kassim</p>
@@ -314,7 +314,7 @@
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                             </ul>
-                            <p>"It is with great pleasure that we extend this recommendation to Drongo Technology and their outstanding ERP solution, DrongoERP. Our collaboration with Drongo Technology has been transformative, and we highly recommend Drongo Technology and DrongoERP for any organization looking to improve operational efficiency and achieve sustainable growth through advanced technology solutions. Their expertise, dedication, and innovative mindset make them a trusted partner for any venture."</p>
+                            <p>"It is with great pleasure that we extend this recommendation to Droongo Technology and their outstanding ERP solution, Droongo. Our collaboration with Droongo Technology has been transformative, and we highly recommend Droongo Technology and Droongo for any organization looking to improve operational efficiency and achieve sustainable growth through advanced technology solutions. Their expertise, dedication, and innovative mindset make them a trusted partner for any venture."</p>
                             <div class="zubuz-testimonial-authors-wraps">
                                 <div class="zubuz-testimonial-authors">
                                     <p>Mr. Abiy Asrat</p>
@@ -350,7 +350,7 @@
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                             </ul>
-                            <p>"It is with great pleasure that we extend this recommendation to Drongo Technology and their outstanding ERP solution, DrongoERP. Our collaboration with Drongo Technology has been transformative, and we highly recommend Drongo Technology and DrongoERP for any organization looking to improve operational efficiency and achieve sustainable growth through advanced technology solutions. Their expertise, dedication, and innovative mindset make them a trusted partner for any venture."</p>
+                            <p>"It is with great pleasure that we extend this recommendation to Droongo Technology and their outstanding ERP solution, Droongo. Our collaboration with Droongo Technology has been transformative, and we highly recommend Droongo Technology and Droongo for any organization looking to improve operational efficiency and achieve sustainable growth through advanced technology solutions. Their expertise, dedication, and innovative mindset make them a trusted partner for any venture."</p>
                             <div class="zubuz-testimonial-authors-wraps">
                                 <div class="zubuz-testimonial-authors">
                                     <p>Beyene Negusse</p>
@@ -386,7 +386,7 @@
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                             </ul>
-                            <p>"DrongoERP successfully implemented an ERP and Project Management system for HABAR GROUP, enhancing operational efficiency, streamlining processes, and improving project management capabilities with comprehensive customization and ongoing support."</p>
+                            <p>"Droongo successfully implemented an ERP and Project Management system for HABAR GROUP, enhancing operational efficiency, streamlining processes, and improving project management capabilities with comprehensive customization and ongoing support."</p>
                             <div class="zubuz-testimonial-authors-wraps">
                                 <div class="zubuz-testimonial-authors">
                                     <p>Eliyas Walelign</p>
@@ -422,7 +422,7 @@
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                             </ul>
-                            <p>"DrongoERP successfully implemented a Project Management system for KiT STUDIO, enhancing operational efficiency, customer relations, and project management. The partnership focused on system tailoring, seamless integration, training, and ongoing support."</p>
+                            <p>"Droongo successfully implemented a Project Management system for KiT STUDIO, enhancing operational efficiency, customer relations, and project management. The partnership focused on system tailoring, seamless integration, training, and ongoing support."</p>
                             <div class="zubuz-testimonial-authors-wraps">
                                 <div class="zubuz-testimonial-authors">
                                     <p>Kidus Teklu</p>
@@ -458,7 +458,7 @@
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                             </ul>
-                            <p>"We are a furniture manufacturing and retailing company. We were looking for an ERP system that would help us grow our business. We found DrongoERP, and it has been a great asset to our company. We would definitely recommend DrongoERP to other manufacturers as well."</p>
+                            <p>"We are a furniture manufacturing and retailing company. We were looking for an ERP system that would help us grow our business. We found Droongo, and it has been a great asset to our company. We would definitely recommend Droongo to other manufacturers as well."</p>
                             <div class="zubuz-testimonial-authors-wraps">
                                 <div class="zubuz-testimonial-authors">
                                     <p>Mr Leul Gossaye</p>
@@ -530,7 +530,7 @@
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                             </ul>
-                            <p>"I am happy with the DrongoERP system, which has completely changed how we run our leather production business. Since incorporating DrongoERP into our workflow, we've seen a significant improvement. I heartily urge any firm looking to maximize productivity and realize its full potential to give DrongoERP a try. I am confident that it will do the same for your company."</p>
+                            <p>"I am happy with the Droongo system, which has completely changed how we run our leather production business. Since incorporating Droongo into our workflow, we've seen a significant improvement. I heartily urge any firm looking to maximize productivity and realize its full potential to give Droongo a try. I am confident that it will do the same for your company."</p>
                             <div class="zubuz-testimonial-authors-wraps">
                                 <div class="zubuz-testimonial-authors">
                                     <p>Eyuel Girma</p>
@@ -566,7 +566,7 @@
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                                 <li><img src="http://127.0.0.1:8003/images/v3/star.png" alt=""></li>
                             </ul>
-                            <p>"I highly recommend DrongoERP, an excellent cloud-based ERP solution provided for my furniture retail shop. Since implementing DrongoERP, our operations have transformed significantly"</p>
+                            <p>"I highly recommend Droongo, an excellent cloud-based ERP solution provided for my furniture retail shop. Since implementing Droongo, our operations have transformed significantly"</p>
                             <div class="zubuz-testimonial-authors-wraps">
                                 <div class="zubuz-testimonial-authors">
                                     <p>Zersenay T.</p>

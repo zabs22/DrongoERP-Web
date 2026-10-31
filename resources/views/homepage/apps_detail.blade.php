@@ -66,7 +66,7 @@
         margin-bottom: 100px;
     }
     .benefits-card {
-        background-color: #ffffff;
+        background-color: #120c04;
         border: none;
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -97,7 +97,7 @@
     }
 
     .whyChoose-item {
-        background: #f9f9f9; 
+        background: #1b1309; 
         border-radius: 10px;
         padding: 25px; 
         text-align: center; 
@@ -166,7 +166,7 @@
         </div>
     </div>
 
-    <div style="background-color: #f2f2f2; width: 100%; position: relative; margin-top: 300px;">
+    <div style="background-color: #0a0600; width: 100%; position: relative; margin-top: 300px;">
         <div class="fade-slider">
             @foreach (json_decode($app['screenshot']) as $screenshot)
                 <img class="image-wrapper slider-img" src="{{ asset('storage/' . $screenshot) }}" alt="Screenshot" >

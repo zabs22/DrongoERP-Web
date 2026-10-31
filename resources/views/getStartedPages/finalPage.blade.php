@@ -33,7 +33,7 @@
         <div class="done-card__top">
             <div class="done-card__check" aria-hidden="true">✓</div>
             <h4>Success!</h4>
-            <p class="done-card__lead">Welcome to DrongoERP! You’re about to embark on an amazing journey.</p>
+            <p class="done-card__lead">Welcome to Droongo! You’re about to embark on an amazing journey.</p>
             <p class="done-card__note">Your account is ready and you're signed in. Log in any time with your email and the password you chose.</p>
             <a class="zubuz-default-btn pill" href="{{ route('dashboard') }}"><span>Go to your dashboard</span></a>
             {{-- Email verification disabled for now. When re-enabled, wrap the two lines above in

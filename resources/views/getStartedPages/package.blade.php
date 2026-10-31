@@ -24,7 +24,7 @@
         <header class="pk-hero">
             <img class="pk-hero__image" src="{{ asset($package['image']) }}" alt="">
             <div>
-                <p class="pk-hero__eyebrow">DrongoERP package</p>
+                <p class="pk-hero__eyebrow">Droongo package</p>
                 <h1>{{ $package['name'] }}</h1>
                 <p class="pk-hero__tagline">{{ $package['tagline'] }}</p>
                 <ul class="pk-perks">

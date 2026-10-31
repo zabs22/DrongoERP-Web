@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ $pageTitle ?? 'DrongoERP — Convenience at your fingertips!' }}</title>
+        <title>{{ $pageTitle ?? 'Droongo — Convenience at your fingertips!' }}</title>
 
         <!-- favicon -->
         <link rel="shortcut icon" href="{{ asset('/images/favicon.svg') }}" type="image/x-icon">
@@ -13,7 +13,7 @@
         <!--- End favicon-->
 
         <!-- google font -->
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Raleway:wght@600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
         <!-- End google font  -->
 
         <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
@@ -27,10 +27,11 @@
         <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('/css/app.min.css') }}">
         <link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
+            <link rel="stylesheet" href="{{ asset('/css/drongo-dark.css') }}">
         
     </head>
 
-    <body class="light">
+    <body class="drongo-dark">
 
         <div class="zubuz-preloader-wrap">
             <div class="zubuz-preloader">
@@ -42,14 +43,14 @@
         </div>
 
         <?php if ($page === 'home') : ?>
-            <header class="site-header site-header--menu-center zubuz-header-section" id="sticky-menu">
+            <header class="site-header site-header--menu-center zubuz-header-section dark-bg white-menu" id="sticky-menu">
                 <div class="container">
                     <nav class="navbar site-navbar">
 
                         <!-- Brand Logo-->
                         <div class="brand-logo">
                             <a href="{{ route('DrongoERP.home') }}">
-                                <img src="{{ asset('/images/logo/logo-dark.png') }}" alt="" class="light-version-logo">
+                                <img src="{{ asset('/images/logo/droongo.png') }}" alt="" class="light-version-logo">
                             </a>
                         </div>
 
@@ -69,6 +70,9 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('DrongoERP.home') }}#about" class="nav-link-item">About Us</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('DrongoERP.home') }}#services" class="nav-link-item">Services</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('DrongoERP.home') }}#apps" class="nav-link-item">Apps</a>
@@ -120,7 +124,7 @@
                         <!-- Brand Logo-->
                         <div class="brand-logo">
                             <a href="{{ route('DrongoERP.home') }}">
-                                <img src="{{ asset('/images/logo/logo-white.png') }}" alt="" class="light-version-logo">
+                                <img src="{{ asset('/images/logo/droongo.png') }}" alt="" class="light-version-logo">
                             </a>
                         </div>
                         <div class="menu-block-wrapper">
@@ -139,6 +143,9 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('DrongoERP.home') }}#about" class="nav-link-item">About Us</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ route('DrongoERP.home') }}#services" class="nav-link-item">Services</a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ route('DrongoERP.home') }}#apps" class="nav-link-item">Apps</a>
@@ -211,34 +218,24 @@
                             <div class="col-xl-4 col-lg-12">
                                 <div class="zubuz-footer-textarea light">
                                     <a href="{{ route('DrongoERP.home') }}">
-                                        <img src="{{ asset('/images/logo/logo-white.png') }}" alt="">
+                                        <img src="{{ asset('/images/logo/droongo.png') }}" alt="">
                                     </a>
                                     <p>We're your innovation partner, delivering cutting-edge solutions that elevate your business to the next level.</p>
                                     <div class="zubuz-social-icon social-box social-box-white">
                                         <ul>
                                             <li>
-                                                <a href="https://www.linkedin.com/company/drongoerp" target="_blank">
-                                                    <i class="fab fa-linkedin"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="https://www.instagram.com/drongoerp/" target="_blank">
+                                                <a href="https://www.instagram.com/drongoerp" target="_blank">
                                                     <i class="fab fa-instagram"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="https://facebook.com/drongoerp" target="_blank">
+                                                <a href="https://www.facebook.com/droongo/" target="_blank">
                                                     <i class="fab fa-facebook-f"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="https://t.me/drongoerp" target="_blank">
-                                                    <i class="fab fa-telegram"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="https://whatsapp.com/drongoerp" target="_blank">
-                                                    <i class="fab fa-whatsapp"></i>
+                                                <a href="https://www.tiktok.com/@drongoerp" target="_blank" aria-label="TikTok">
+                                                    <i class="fab fa-tiktok"></i>
                                                 </a>
                                             </li>
                                         </ul>
@@ -259,17 +256,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-md-4">
-                                <div class="zubuz-footer-menu light">
-                                    <div class="zubuz-footer-title light">
-                                        <p>Utility pages</p>
-                                    </div>
-                                    <ul>
-                                        <li><a href="{{ route('DrongoERP.home') }}#faq">Instructions</a></li>
-                                        <li><a href="{{ route('DrongoERP.contact') }}">Careers</a></li>
-                                    </ul>
-                                </div>
-                            </div>
                             <div class="col-xl-3 col-md-4">
                                 <div class="zubuz-footer-menu light info extar-margin">
                                     <div class="zubuz-footer-title light">
@@ -278,7 +264,7 @@
                                     <ul>
                                         <li><a href="tel:+251907778899"><img src="{{ asset('/images/icon/call.svg') }}" alt="">+251-90-777-8899</a></li>
                                         <li><a href="mailto:info@drongoerp.com"><img src="{{ asset('/images/icon/email.svg') }}" alt="">info@drongoerp.com</a></li>
-                                        <li><a href="https://maps.app.goo.gl/zpgJ9N7XVS5oStmG9" target="_blank"><img src="{{ asset('/images/icon/map.svg') }}" alt="">Namibia Street, Bole, Addis Ababa</a></li>
+                                        <li><a href="https://www.google.com/maps/search/?api=1&query=Trans+World+Bole+Addis+Ababa" target="_blank"><img src="{{ asset('/images/icon/map.svg') }}" alt="">Bole, Trans world 4th floor 1000 Addis Ababa, Ethiopia</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -286,7 +272,7 @@
                     </div>
                     <div class="zubuz-footer-bottom center light">
                         <div class="zubuz-copywright light">
-                            <p> &copy; Copyright 2024, All Rights Reserved by Drongo Technology</p>
+                            <p> &copy; Copyright 2024, All Rights Reserved by Droongo Technology</p>
                         </div>
                     </div>
                 </div>
@@ -302,7 +288,7 @@
                             <div class="col-xl-4 col-lg-12">
                                 <div class="zubuz-footer-textarea">
                                     <a href="{{ route('DrongoERP.home') }}">
-                                        <img src="{{ asset('/images/logo/logo-dark.png') }}" alt="">
+                                        <img src="{{ asset('/images/logo/droongo.png') }}" alt="">
                                     </a>
                                     <p>We're your innovation partner, delivering cutting-edge solutions that elevate your business to the next level.</p>
                                     <div class="zubuz-subscribe-one">
@@ -329,17 +315,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-md-4">
-                                <div class="zubuz-footer-menu">
-                                    <div class="zubuz-footer-title">
-                                        <p>Utility pages</p>
-                                    </div>
-                                    <ul>
-                                        <li><a href="{{ route('DrongoERP.home') }}#faq">Instructions</a></li>
-                                        <li><a href="{{ route('DrongoERP.contact') }}">Careers</a></li>
-                                    </ul>
-                                </div>
-                            </div>
                             <div class="col-xl-3 col-md-4">
                                 <div class="zubuz-footer-menu info extar-margin">
                                     <div class="zubuz-footer-title">
@@ -348,7 +323,7 @@
                                     <ul>
                                         <li><a href="tel:+251907778899"><img src="{{ asset('/images/icon/call.svg') }}" alt="">+251-90-777-8899</a></li>
                                         <li><a href="mailto:info@drongoerp.com"><img src="{{ asset('/images/icon/email.svg') }}" alt="">info@drongoerp.com</a></li>
-                                        <li><a href="https://maps.app.goo.gl/zpgJ9N7XVS5oStmG9" target="_blank"><img src="{{ asset('/images/icon/map.svg') }}" alt="">Namibia Street, Bole, Addis Ababa</a></li>
+                                        <li><a href="https://www.google.com/maps/search/?api=1&query=Trans+World+Bole+Addis+Ababa" target="_blank"><img src="{{ asset('/images/icon/map.svg') }}" alt="">Bole, Trans world 4th floor 1000 Addis Ababa, Ethiopia</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -358,34 +333,24 @@
                         <div class="zubuz-social-icon order-md-2">
                             <ul>
                                 <li>
-                                    <a href="https://www.linkedin.com/company/drongoerp" target="_blank">
-                                        <i class="fab fa-linkedin"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/drongoerp/" target="_blank">
+                                    <a href="https://www.instagram.com/drongoerp" target="_blank">
                                         <i class="fab fa-instagram"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://facebook.com/drongoerp" target="_blank">
+                                    <a href="https://www.facebook.com/droongo/" target="_blank">
                                         <i class="fab fa-facebook-f"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://t.me/drongoerp" target="_blank">
-                                        <i class="fab fa-telegram"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://whatsapp.com/drongoerp" target="_blank">
-                                        <i class="fab fa-whatsapp"></i>
+                                    <a href="https://www.tiktok.com/@drongoerp" target="_blank" aria-label="TikTok">
+                                        <i class="fab fa-tiktok"></i>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="zubuz-copywright">
-                            <p> &copy; Copyright 2024, All Rights Reserved by Drongo Technology</p>
+                            <p> &copy; Copyright 2024, All Rights Reserved by Droongo Technology</p>
                         </div>
                     </div>
 

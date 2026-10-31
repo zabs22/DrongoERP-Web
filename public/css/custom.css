@@ -656,3 +656,36 @@ html { scroll-behavior: smooth; }
     .pk-summary__count { display: none; }
     .pk-summary__cta { width: 100%; }
 }
+
+
+/* ---------- One button size across the site ---------- */
+.zubuz-default-btn, .dg-btn, .gs-btn, .gs-btn--ghost, .drongo-plan__cta, .zubuz-pricing-btn {
+    display: inline-flex !important; align-items: center; justify-content: center; gap: 8px;
+    min-width: 140px; min-height: 46px !important; width: auto;
+    padding: 10px 22px !important; border-radius: 9px !important;
+    font-size: 15px !important; font-weight: 600; line-height: 1.3 !important;
+    text-align: center;
+}
+.gs-actions .gs-btn[hidden] { display: none !important; }
+.drongo-plan__cta, .pk-summary__cta { width: 100%; }
+.zubuz-header-btn-wrap { margin-right: 12px; }
+.gs-actions { gap: 12px; }
+
+/* ---------- One typeface across the site (Inter, as in the homepage hero) ---------- */
+body, h1, h2, h3, h4, h5, h6, p, a, li, span, div, label, input, select, textarea, button, small, strong, em:not(.ni) {
+    font-family: Inter, sans-serif !important;
+}
+.fa, .fas, .far, .fal, .fa-solid, .fa-regular { font-family: "Font Awesome 5 Free", "Font Awesome 6 Free" !important; }
+.fab, .fa-brands { font-family: "Font Awesome 5 Brands", "Font Awesome 6 Brands" !important; }
+h1, h2, h3, h4, h5, h6 { font-weight: 500; }
+
+/* ---------- Body text matches the navbar and footer; titles and subtitles keep their sizes ---------- */
+p:not(.dg-lead):not(.gs-tagline):not(.lead),
+li, label, td, th, dd, dt, input, select, textarea,
+.zubuz-accordion-body p, .zubuz-iconbox-data p, .dg-card p, .dg-services__grid p {
+    font-size: 14px !important; line-height: 1.6;
+}
+.dg-heading p, .dg-transform p, .dg-features__intro p,
+.zubuz-section-title p, .zubuz-breadcrumb p { font-size: 18px !important; }
+.gs-brand { margin: 0; }
+.gs-brand img { height: 56px; width: auto; margin: 0 auto; }

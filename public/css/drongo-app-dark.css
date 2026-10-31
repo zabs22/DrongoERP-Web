@@ -1,0 +1,11 @@
+/* Dark login and dashboard pages (Tailwind layouts) */
+body, .bg-gray-100, .bg-gray-50 { background-color: #0a0600 !important; }
+.bg-white { background-color: #120c04 !important; }
+.text-gray-900, .text-gray-800, .text-gray-700 { color: #f4efe8 !important; }
+.text-gray-600, .text-gray-500, .text-gray-400 { color: #b5ab9e !important; }
+.border-gray-100, .border-gray-200, .border-gray-300 { border-color: #33291c !important; }
+input:not([type=checkbox]):not([type=radio]), select, textarea { background-color: #1b1309 !important; border-color: #33291c !important; color: #f4efe8 !important; }
+button[type=submit]:not(.text-red-600), .bg-gray-800 { background-color: #f08109 !important; color: #fff !important; }
+a[class*="text-brand"], a[class*="text-indigo"], [class*="text-brand-"] { color: #ffb455 !important; }
+input:focus, select:focus, textarea:focus { border-color: #f08109 !important; --tw-ring-color: #f08109 !important; }
+p, li, label, td, th, input, select, textarea { font-size: 14px !important; }

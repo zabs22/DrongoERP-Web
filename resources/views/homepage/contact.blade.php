@@ -31,7 +31,7 @@
                             <div class="zubuz-iconbox-wrap-left d-block">
                                 <div class="zubuz-iconbox-data data-small">
                                     <span>Office Location:</span>
-                                    <p>Gulf Aziz Bldg., Namibia Street, Bole, Addis Ababa, Ethiopia.</p>
+                                    <p>Bole, Trans world 4th floor 1000 Addis Ababa, Ethiopia</p>
                                 </div>
                             </div>
                             <div class="zubuz-iconbox-wrap-left d-block">
@@ -40,28 +40,18 @@
                                     <div class="zubuz-social-icon social-box">
                                         <ul>
                                             <li>
-                                                <a href="https://www.linkedin.com/company/drongoerp" target="_blank">
-                                                    <i class="fab fa-linkedin"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="https://www.instagram.com/drongoerp/" target="_blank">
+                                                <a href="https://www.instagram.com/drongoerp" target="_blank">
                                                     <i class="fab fa-instagram"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="https://facebook.com/drongoerp" target="_blank">
+                                                <a href="https://www.facebook.com/droongo/" target="_blank">
                                                     <i class="fab fa-facebook-f"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="https://t.me/drongoerp" target="_blank">
-                                                    <i class="fab fa-telegram"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="https://whatsapp.com/drongoerp" target="_blank">
-                                                    <i class="fab fa-whatsapp"></i>
+                                                <a href="https://www.tiktok.com/@drongoerp" target="_blank" aria-label="TikTok">
+                                                    <i class="fab fa-tiktok"></i>
                                                 </a>
                                             </li>
                                         </ul>
@@ -141,7 +131,7 @@
                         </div>
                         <div class="zubuz-iconbox-data light">
                             <h3>Our office address</h3>
-                            <p>Namibia St., Gulf Aziz Bldg., Bole, Addis Ababa.</p>
+                            <p>Bole, Trans world 4th floor 1000 Addis Ababa, Ethiopia</p>
                         </div>
                     </div>
                 </div>
@@ -158,7 +148,7 @@
             <div class="zubuz-accordion-wrap zubuz-accordion-wrap2" id="zubuz-accordion">
                 <div class="zubuz-accordion-item open">
                     <div class="zubuz-accordion-header">
-                        <p>Q: What makes DrongoERP stand out from competitors?</p>
+                        <p>Q: What makes Droongo stand out from competitors?</p>
                         <div class="zubuz-active-icon">
                             <img src="assets/images/v3/plus.png" alt="">
                         </div>

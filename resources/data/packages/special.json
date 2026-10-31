@@ -31,7 +31,7 @@
         },
         {
             "name": "Automatic Barcode Generating",
-            "description": "Generates barcode directly form DrongoERP database for every product."
+            "description": "Generates barcode directly form Droongo database for every product."
         },
         {
             "name": "Toggle Fullscreen",
@@ -47,7 +47,7 @@
         },
         {
             "name": "Excel Download and Export",
-            "description": "Enables you to export a copy of the selected data from DrongoERP to a CSV or an Excel format or stores the copied data in a file that can be opened in Excel."
+            "description": "Enables you to export a copy of the selected data from Droongo to a CSV or an Excel format or stores the copied data in a file that can be opened in Excel."
         },
         {
             "name": "Group Permission / Access Control",
@@ -55,11 +55,11 @@
         },
         {
             "name": "Email Configuration",
-            "description": "Drongo mail servers will use your credentials to notify you and send messages directly to your email."
+            "description": "Droongo mail servers will use your credentials to notify you and send messages directly to your email."
         },
         {
             "name": "SMS Configuration",
-            "description": "Drongo servers will use your phone number to notify you and send messages directly to your phone."
+            "description": "Droongo servers will use your phone number to notify you and send messages directly to your phone."
         },
         {
             "name": "Payment Gateway Config",
@@ -149,7 +149,7 @@
                             "name": "Barcode Printing",
                             "price": 580,
                             "default": false,
-                            "description": "Allows you to print barcodes directly from the Drongo ERP database for each product plus any quantity, improving the error rate of the labels, reducing misprints, and significantly reducing the amount of data entry required to generate labels"
+                            "description": "Allows you to print barcodes directly from the Droongo ERP database for each product plus any quantity, improving the error rate of the labels, reducing misprints, and significantly reducing the amount of data entry required to generate labels"
                         }
                     ]
                 },

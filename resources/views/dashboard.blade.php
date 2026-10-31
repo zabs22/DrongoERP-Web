@@ -125,7 +125,7 @@
                 @else
                     <p class="text-sm text-plumage-100">
                         You don't have a plan yet.
-                        <a href="{{ route('upgrade') }}" class="font-semibold text-brand-100 hover:text-white">Choose a plan</a> to start using DrongoERP.
+                        <a href="{{ route('upgrade') }}" class="font-semibold text-brand-100 hover:text-white">Choose a plan</a> to start using Droongo.
                     </p>
                 @endif
             </section>

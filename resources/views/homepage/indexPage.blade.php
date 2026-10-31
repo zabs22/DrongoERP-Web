@@ -1,150 +1,7 @@
 @extends('layout/mainlayout')
 
 @section('page-content')
-    <div class="zubuz-hero-section" id="home">
-        <div class="container">
-            <div class="zubuz-hero-content center">
-                <h1>
-                    Elevate your success with DrongoERP
-                    <span class="zubuz-title-shape">
-                        <img src="{{ asset('/images/v3/shape-v3-01.png') }}" alt="">
-                    </span>
-                </h1>
-                <p>DrongoERP offers a user-friendly, cost-effective and scalable software solution that empowers you to access and utilize powerful technology that drive your business forward.</p>
-                <div class="zubuz-extara-mt">
-                    <div class="zubuz-subscribe-three">
-                        <form action="{{ route('DrongoERP.liveDemoViewerSubmit')}}" method="POST">
-                            @csrf
-                            <input type="email" name="email" placeholder="Enter your e-mail address" required>
-                            <button type="submit" target="_blank" class="zubuz-default-btn zubuz-subscription-btn three" id="zubuz-subscription-btn">
-                                <span>Live Demo</span>
-                            </button>
-                            <div class="zubuz-input-email">
-                                <img src="{{ asset('/images/icon/email2.svg') }}" alt="">
-                            </div>
-                        </form>  
-                    </div>
-                    <div class="zubuz-icon-list">
-                        <ul>
-                            <li><img src="{{ asset('/images/v3/check.png') }}" alt=""> Lifetime money back guarantee</li>
-                            <li><img src="{{ asset('/images/v3/check.png') }}" alt=""> Get your own team of professionals</li>
-                            <li><img src="{{ asset('/images/v3/check.png') }}" alt=""> 7-day free trial</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-            <div class="zubuz-border-btoom">
-                <div class="zubuz-hero-thumb3">
-                    <img src="{{ asset('/images/v3/thumb-v3-01.png') }}" alt="">
-                    <div class="zubuz-hero-thumb-card1">
-                        <img src="{{ asset('/images/v3/card-v3-1.png') }}" alt="">
-                    </div>
-                    <div class="zubuz-hero-thumb-card2">
-                        <img src="{{ asset('/images/v3/card-v3-2.png') }}" alt="">
-                    </div>
-                    <div class="zubuz-hero-thumb-card3">
-                        <img src="{{ asset('/images/v3/card-v3-3.png') }}" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End section -->
-
-    <div class="section zubuz-section-padding3" id="services">
-        <div class="container">
-            <div class="zubuz-section-title zubuz-two-column-title">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <h2>Wide range of industry solutions</h2>
-                    </div>
-                    <div class="col-lg-5 d-flex align-items-center">
-                        <div class="zubuz-title-btn">
-                            <a class="zubuz-default-btn pill" href="#apps">
-                                <span>View all services</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-4 col-md-6">
-                    <div class="zubuz-iconbox-wrap-left iconbox-left-border">
-                        <div class="zubuz-iconbox-icon none-bg">
-                            <img src="{{ asset('/images/v3/icon1.png') }}" alt="">
-                        </div>
-                        <div class="zubuz-iconbox-data data-small">
-                            <span>Customer support</span>
-                            <p>Enjoy top-tier ongoing customer support in the city.</p>
-                            <a class="zubuz-iconbox-btn" href="#"> <span>Read more</span> <img src="{{ asset('/images/icon/arrow-right2.svg') }}" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="zubuz-iconbox-wrap-left iconbox-left-border">
-                        <div class="zubuz-iconbox-icon none-bg">
-                            <img src="{{ asset('/images/v3/icon2.png') }}" alt="">
-                        </div>
-                        <div class="zubuz-iconbox-data data-small">
-                            <span>Free Trial</span>
-                            <p>Experience our system with a complementary free trial.</p>
-                            <a class="zubuz-iconbox-btn" href="#"> <span>Read more</span> <img src="{{ asset('/images/icon/arrow-right2.svg') }}" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="zubuz-iconbox-wrap-left iconbox-left-border">
-                        <div class="zubuz-iconbox-icon none-bg">
-                            <img src="{{ asset('/images/v3/icon3.png') }}" alt="">
-                        </div>
-                        <div class="zubuz-iconbox-data data-small">
-                            <span>Deeper Insights</span>
-                            <p>Get deeper understanding of your business performance.</p>
-                            <a class="zubuz-iconbox-btn" href="#"> <span>Read more</span> <img src="{{ asset('/images/icon/arrow-right2.svg') }}" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="zubuz-iconbox-wrap-left iconbox-left-border">
-                        <div class="zubuz-iconbox-icon none-bg">
-                            <img src="{{ asset('/images/v3/icon4.png') }}" alt="">
-                        </div>
-                        <div class="zubuz-iconbox-data data-small">
-                            <span>Proven Track Record</span>
-                            <p>We have track record of successful client partnershps.</p>
-                            <a class="zubuz-iconbox-btn" href="#"> <span>Read more</span> <img src="{{ asset('/images/icon/arrow-right2.svg') }}" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="zubuz-iconbox-wrap-left iconbox-left-border">
-                        <div class="zubuz-iconbox-icon none-bg">
-                            <img src="{{ asset('/images/v3/icon5.png') }}" alt="">
-                        </div>
-                        <div class="zubuz-iconbox-data data-small">
-                            <span>Accounting and finance</span>
-                            <p>Accounting software that helps with your financial reports.</p>
-                            <a class="zubuz-iconbox-btn" href="#"> <span>Read more</span> <img src="{{ asset('/images/icon/arrow-right2.svg') }}" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="zubuz-iconbox-wrap-left iconbox-left-border">
-                        <div class="zubuz-iconbox-icon none-bg">
-                            <img src="{{ asset('/images/v3/icon6.png') }}" alt="">
-                        </div>
-                        <div class="zubuz-iconbox-data data-small">
-                            <span>Data Security</span>
-                            <p>Benefit from robust security measures and data backup.</p>
-                            <a class="zubuz-iconbox-btn" href="#"> <span>Read more</span> <img src="{{ asset('/images/icon/arrow-right2.svg') }}" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Section -->
+    @include('homepage.partials.hero-services')
 
     <div class="section zubuz-section-padding3 bg-light" id="about">
         <div class="container">
@@ -164,7 +21,7 @@
                         <img src="{{ asset('/images/about/about-team.jpg') }}" alt="A team collaborating at their workstations" loading="lazy">
                     </div>
                     <div class="zubuz-about-thumb">
-                        <img src="{{ asset('/images/about/about-product.jpg') }}" alt="DrongoERP dashboard on desktop, laptop, tablet and phone" loading="lazy">
+                        <img src="{{ asset('/images/about/about-product.jpg') }}" alt="Droongo dashboard on desktop, laptop, tablet and phone" loading="lazy">
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
@@ -419,7 +276,7 @@
                                 <li><img src="{{ asset('/images/v3/star.png') }}" alt=""></li>
                                 <li><img src="{{ asset('/images/v3/star.png') }}" alt=""></li>
                             </ul>
-                            <p>"DrongoERP has revolutionalized our manufacturing processes, providing real-time visibility into production, supply chain, and quality control. This has significantly enhanced our efficiency and reduces our expenses.”</p>
+                            <p>"Droongo has revolutionalized our manufacturing processes, providing real-time visibility into production, supply chain, and quality control. This has significantly enhanced our efficiency and reduces our expenses.”</p>
                             <div class="zubuz-testimonial-authors-wraps">
                                 <div class="zubuz-testimonial-authors">
                                     <p>Ephrem Birhanu</p>
@@ -446,7 +303,7 @@
             <div class="zubuz-accordion-wrap zubuz-accordion-wrap2" id="zubuz-accordion">
                 <div class="zubuz-accordion-item open">
                     <div class="zubuz-accordion-header">
-                        <p>Q: What makes DrongoERP stand out from competitors?</p>
+                        <p>Q: What makes Droongo stand out from competitors?</p>
                         <div class="zubuz-active-icon">
                             <img src="{{ asset('/images/v3/') }}plus.png" alt="">
                         </div>

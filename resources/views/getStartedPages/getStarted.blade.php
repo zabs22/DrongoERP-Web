@@ -55,14 +55,12 @@
     <img class="gs-swirl gs-swirl--tr" src="{{ asset('/images/getstarted/swirl.svg') }}" alt="">
     <img class="gs-swirl gs-swirl--bl" src="{{ asset('/images/getstarted/swirl.svg') }}" alt="">
     <img class="gs-swirl gs-swirl--br" src="{{ asset('/images/getstarted/swirl.svg') }}" alt="">
-    <img class="gs-watermark" src="{{ asset('/images/favicon.svg') }}" alt="">
 
     <div class="gs-sheet">
         <header class="gs-head">
-            <div class="gs-logo"><img src="{{ asset('/images/favicon.svg') }}" alt="DrongoERP"></div>
-            <h1>DrongoERP</h1>
+            <h1 class="gs-brand"><img src="{{ asset('/images/logo/droongo.png') }}" alt="Droongo"></h1>
             <p class="gs-tagline">Convenience at your fingertips!</p>
-            <p class="gs-welcome"><strong>Welcome to DrongoERP!</strong> We’re excited to partner with you on transforming your business. This form gathers essential information to customize your ERP system, helping you streamline operations, boost efficiency, and achieve sustainable growth.</p>
+            <p class="gs-welcome"><strong>Welcome to Droongo!</strong> We’re excited to partner with you on transforming your business. This form gathers essential information to customize your ERP system, helping you streamline operations, boost efficiency, and achieve sustainable growth.</p>
             <p class="gs-journey">Let’s embark on this exciting journey together toward achieving your business goals!</p>
         </header>
 
@@ -268,7 +266,7 @@
         <footer class="gs-contact">
             <a href="mailto:contact@drongoerp.com"><img src="{{ asset('/images/icon/email.svg') }}" alt="">contact@drongoerp.com / info@drongoerp.com</a>
             <a href="tel:+251907778899"><img src="{{ asset('/images/icon/call.svg') }}" alt="">+251 90 777 8899 / +251 90 877 8899</a>
-            <a href="https://maps.app.goo.gl/zpgJ9N7XVS5oStmG9" target="_blank" rel="noopener"><img src="{{ asset('/images/icon/map.svg') }}" alt="">Gulf Aziz Bldg., Namibia Street, Bole, Addis Ababa</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Trans+World+Bole+Addis+Ababa" target="_blank" rel="noopener"><img src="{{ asset('/images/icon/map.svg') }}" alt="">Bole, Trans world 4th floor 1000 Addis Ababa, Ethiopia</a>
         </footer>
     </div>
 </section>

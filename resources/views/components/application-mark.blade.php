@@ -1,1 +1,1 @@
-<img src="{{ asset('images/favicon.svg') }}" alt="DrongoERP" {{ $attributes }}>
+<img src="{{ asset('images/logo/droongo.png') }}" alt="Droongo" {{ $attributes }}>

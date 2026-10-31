@@ -14,7 +14,7 @@ class FormController extends Controller
         }
 
         $pageData = array(
-            'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',
+            'pageTitle' => 'Droongo Vacancy — Convenience at your fingertips!',
             'page' => 'choosePackage'
         );
 
@@ -36,7 +36,7 @@ class FormController extends Controller
             ?? ($companyProfile->requestedPackage ? $companyProfile->requestedPackage . ' (requested)' : null);
 
         $pageData = array(
-            'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',
+            'pageTitle' => 'Droongo Vacancy — Convenience at your fingertips!',
             'page' => 'page5'
         );
         
@@ -65,7 +65,7 @@ class FormController extends Controller
         }
 
         $pageData = array(
-            'pageTitle' => 'Get Started with DrongoERP — Convenience at your fingertips!',
+            'pageTitle' => 'Get Started with Droongo — Convenience at your fingertips!',
             'page' => 'getStarted'
         );
 

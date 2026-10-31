@@ -76,7 +76,7 @@
                             "name": "Barcode Printing",
                             "price": 834,
                             "default": true,
-                            "description": "Allows you to print barcodes directly from the Drongo ERP database for each product plus any quantity, improving the error rate of the labels, reducing misprints, and significantly reducing the amount of data entry required to generate labels"
+                            "description": "Allows you to print barcodes directly from the Droongo ERP database for each product plus any quantity, improving the error rate of the labels, reducing misprints, and significantly reducing the amount of data entry required to generate labels"
                         }
                     ]
                 },

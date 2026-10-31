@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\AppCatalog;
 use Illuminate\Http\Request;
 use App\Models\App; 
 
@@ -10,7 +11,7 @@ class PagesController extends Controller
     //
     public function openDrongoERPHomepage() {
         $pageData = array (
-            'pageTitle' => 'DrongoERP — Convenience at your fingertips!',
+            'pageTitle' => 'Droongo — Convenience at your fingertips!',
             'page' => 'home'
         );
         
@@ -19,7 +20,7 @@ class PagesController extends Controller
 
     public function openDrongoERPAboutpage() {
         $pageData = array (
-            'pageTitle' => 'About DrongoERP — Leading Cloud-based ERP Software',
+            'pageTitle' => 'About Droongo — Leading Cloud-based ERP Software',
             'page' => 'about'
         );
         
@@ -28,7 +29,7 @@ class PagesController extends Controller
 
     public function openDrongoERPServicespage() {
         $pageData = array (
-            'pageTitle' => 'DrongoERP Services — Convenience at your fingertips!',
+            'pageTitle' => 'Droongo Services — Convenience at your fingertips!',
             'page' => 'services'
         );
         
@@ -37,7 +38,7 @@ class PagesController extends Controller
 
     public function openDrongoERPPricingpage() {
         $pageData = array (
-            'pageTitle' => 'DrongoERP Pricing — Convenience at your fingertips!',
+            'pageTitle' => 'Droongo Pricing — Convenience at your fingertips!',
             'page' => 'pricing'
         );
         
@@ -46,7 +47,7 @@ class PagesController extends Controller
 
     public function openDrongoERPContactpage() {
         $pageData = array (
-            'pageTitle' => 'Contact DrongoERP — Convenience at your fingertips!',
+            'pageTitle' => 'Contact Droongo — Convenience at your fingertips!',
             'page' => 'contact'
         );
         
@@ -55,7 +56,7 @@ class PagesController extends Controller
 
     public function openDrongoERPNewspage() {
         $pageData = array (
-            'pageTitle' => 'News DrongoERP — Convenience at your fingertips!',
+            'pageTitle' => 'News Droongo — Convenience at your fingertips!',
             'page' => 'news'
         );
         
@@ -64,7 +65,7 @@ class PagesController extends Controller
 
     public function openDrongoERPInstructionspage() {
         $pageData = array (
-            'pageTitle' => 'DrongoERP Instructions — Convenience at your fingertips!',
+            'pageTitle' => 'Droongo Instructions — Convenience at your fingertips!',
             'page' => 'instruction'
         );
         
@@ -73,7 +74,7 @@ class PagesController extends Controller
 
     public function openDrongoERPCareerspage() {
         $pageData = array (
-            'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',
+            'pageTitle' => 'Droongo Vacancy — Convenience at your fingertips!',
             'page' => 'careers'
         );
         
@@ -82,7 +83,7 @@ class PagesController extends Controller
 
     public function openDrongoERPtestimonial(){
         $pageData = array(
-            'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',
+            'pageTitle' => 'Droongo Vacancy — Convenience at your fingertips!',
             'page' => 'Testimonial'
         );
 
@@ -91,7 +92,7 @@ class PagesController extends Controller
 
     public function openDrongoERPapps(){
         $pageData = array(
-            'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',
+            'pageTitle' => 'Droongo Vacancy — Convenience at your fingertips!',
             'page' => 'Apps'
         );
 
@@ -99,13 +100,13 @@ class PagesController extends Controller
     }
 
     public function openDrongoERPappsDetail($id){
+        $app = AppCatalog::find((int) $id) ?? abort(404);
         $pageData = array(
-            'pageTitle' => 'DrongoERP Vacancy — Convenience at your fingertips!',
+            'pageTitle' => $app['title'] . ' — Droongo',
             'page' => 'AppsDetail'
         );
-        $app = App::findOrFail($id); 
 
-        return view('homePage.apps_detail', compact('app'))->with($pageData);
+        return view('homepage.app_page', compact('app'))->with($pageData);
     }
 
     

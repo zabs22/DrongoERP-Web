@@ -42,7 +42,7 @@ class PackageController extends Controller
         };
 
         $pageData = array(
-            'pageTitle' => $package['name'] . ' Package — DrongoERP',
+            'pageTitle' => $package['name'] . ' Package — Droongo',
             'page' => 'package'
         );
 
